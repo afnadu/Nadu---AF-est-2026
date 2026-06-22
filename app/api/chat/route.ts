@@ -38,6 +38,9 @@ export async function POST(req: NextRequest) {
             controller.enqueue(new TextEncoder().encode(chunk.delta.text))
           }
         }
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'Unknown error'
+        controller.enqueue(new TextEncoder().encode(`⚠️ API error: ${msg}`))
       } finally {
         controller.close()
       }
