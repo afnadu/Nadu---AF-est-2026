@@ -1,0 +1,237 @@
+import type { KnowledgeChunk } from '@/types'
+
+export const cpapKnowledge: KnowledgeChunk[] = [
+  // ─── MACHINE TYPES ───
+  {
+    id: 'machine-cpap',
+    topic: 'CPAP — Fixed Pressure',
+    category: 'machine',
+    tags: ['cpap', 'fixed pressure', 'machine'],
+    content: `CPAP (Continuous Positive Airway Pressure) delivers a single fixed pressure throughout the night. Prescribed pressure is set by a clinician following a titration study. Typical range: 4–20 cmH2O. Best for straightforward OSA with consistent pressure needs. Disadvantage: may feel too high during exhalation — EPR/Flex comfort settings can offset this.`,
+  },
+  {
+    id: 'machine-apap',
+    topic: 'APAP — Auto-Adjusting Pressure',
+    category: 'machine',
+    tags: ['apap', 'auto cpap', 'autotitrating', 'machine'],
+    content: `APAP (Auto-titrating PAP) adjusts pressure breath-by-breath within a set min/max range, responding to apneas, hypopneas, snoring, and flow limitation. Typical range: 4–20 cmH2O. Advantages: lower average pressure exposure, handles positional and REM-related changes. Preferred for most uncomplicated OSA. Brands: ResMed AirSense 11 AutoSet, Philips DreamStation Auto, Fisher & Paykel SleepStyle Auto.`,
+  },
+  {
+    id: 'machine-bipap',
+    topic: 'BiPAP / BPAP — Two-Level Pressure',
+    category: 'machine',
+    tags: ['bipap', 'bpap', 'two level', 'ipap', 'epap', 'machine'],
+    content: `BiPAP delivers separate inspiratory (IPAP) and expiratory (EPAP) pressures. IPAP is higher (supports inhalation), EPAP is lower (maintains airway patency during exhalation). Indicated for: high-pressure CPAP intolerance, COPD overlap, obesity hypoventilation, neuromuscular disease, central/mixed apnea. IPAP-EPAP differential (PS — pressure support) typically 4–10 cmH2O. BiPAP-S/T adds a timed backup rate for patients with inadequate respiratory drive.`,
+  },
+  {
+    id: 'machine-asv',
+    topic: 'ASV — Adaptive Servo-Ventilation',
+    category: 'machine',
+    tags: ['asv', 'central apnea', 'cheyne-stokes', 'complex apnea', 'machine'],
+    content: `ASV targets a minute ventilation goal, adjusting pressure support dynamically. Primarily indicated for complex/mixed sleep apnea, treatment-emergent central apneas, and Cheyne-Stokes respiration. CONTRAINDICATED in patients with symptomatic chronic heart failure with reduced ejection fraction (HFrEF, EF ≤45%) — associated with increased cardiovascular mortality (SERVE-HF trial). Requires physician ordering and careful monitoring.`,
+    clinicianOnly: true,
+  },
+  {
+    id: 'machine-travel',
+    topic: 'Travel CPAP Devices',
+    category: 'machine',
+    tags: ['travel', 'portable', 'airplane', 'altitude', 'machine'],
+    content: `Travel CPAPs are lightweight (under 350g) and FAA-approved for in-flight use. Popular models: ResMed AirMini (compatible with F20, P10, N20 masks via AirMini adapters), Transcend CPAP (uses standard 22mm hose), Breas Z2 Auto. Key considerations: altitude adjustment (most auto-adjust), humidification options (waterless HME vs. miniaturised humidifier), battery compatibility. Patients should carry prescription and device on carry-on, never checked luggage.`,
+  },
+
+  // ─── MASK TYPES ───
+  {
+    id: 'mask-nasal',
+    topic: 'Nasal Masks',
+    category: 'mask',
+    tags: ['nasal mask', 'mask', 'cushion'],
+    content: `Nasal masks cover the nose only. Most common mask type. Good for: patients who breathe through the nose, those who move during sleep, higher pressures. Drawbacks: ineffective if patient mouth-breathes (chin strap or full face mask needed), nasal congestion is poorly tolerated. Key fit points: bridge seal, side cheek seal. Examples: ResMed AirFit N20, Fisher & Paykel Evora, Philips DreamWear (under-the-nose design). Under-the-nose nasal masks (e.g. DreamWear, Brevida) reduce bridge pressure sores.`,
+  },
+  {
+    id: 'mask-pillow',
+    topic: 'Nasal Pillow Masks',
+    category: 'mask',
+    tags: ['nasal pillow', 'cannula', 'mask', 'minimal contact'],
+    content: `Nasal pillow/cannula masks have small silicone inserts that sit inside the nostrils. Minimal facial contact. Best for: claustrophobia, facial hair, glasses wearers, side-sleepers, lower-pressure therapy. Limitations: pressure limit ~15 cmH2O (discomfort at high flow), not suitable for mouth breathers, nostril soreness if sized incorrectly. Examples: ResMed AirFit P10, Fisher & Paykel Brevida, Respironics DreamWear (nasal pillow version).`,
+  },
+  {
+    id: 'mask-fullface',
+    topic: 'Full Face Masks',
+    category: 'mask',
+    tags: ['full face', 'oronasal', 'mask', 'mouth breathing'],
+    content: `Full face / oronasal masks cover nose and mouth. Indicated for: mouth breathers, nasal congestion, higher pressures. Drawbacks: larger footprint, more complex fit (6 contact points), higher dead space can raise CO2 (relevant in BiPAP/high-PS patients), claustrophobia risk, prone to aerophagia. Effective leak sealing requires proper fitting. Examples: ResMed AirFit F20, F30 (under-nose cushion), Philips DreamWear Full Face, Fisher & Paykel Vitera, Sleepweaver Anew (cloth mask).`,
+  },
+  {
+    id: 'mask-hybrid',
+    topic: 'Hybrid / Oral Masks',
+    category: 'mask',
+    tags: ['hybrid', 'oral', 'total face', 'mask'],
+    content: `Hybrid masks combine nasal pillows with an oral seal (e.g., ResMed Mirage Liberty, Innomed Oracle). Useful for patients who mouth-breathe but cannot tolerate full-face masks. Total face masks (e.g., Philips FitLife) cover the entire face and are useful for facial anatomy challenges or severe intolerance to standard masks. Oracle oral mask delivers therapy entirely through the mouth — niche use for severe nasal obstruction.`,
+  },
+  {
+    id: 'mask-fitting',
+    topic: 'Mask Fitting & Leak Management',
+    category: 'mask',
+    tags: ['mask fit', 'leak', 'seal', 'headgear', 'fitting'],
+    content: `Proper mask fit: measure face in upright position, try mask on before tightening headgear, do a "pressurization check" with CPAP running. Acceptable leak rate: <24 L/min (ResMed) or <20% session average (Philips). Causes of leak: wrong size, worn cushion (replace every 1–3 months), over-tightening (distorts cushion), under-tightening, positional changes overnight. Skin irritation from overtightening is a common patient error — the seal comes from pressure, not clamp force. Replace cushion every 1–3 months, frame every 6 months, headgear every 6 months.`,
+  },
+
+  // ─── SETTINGS ───
+  {
+    id: 'settings-epr',
+    topic: 'EPR / Flex / A-Flex Comfort Settings',
+    category: 'settings',
+    tags: ['epr', 'flex', 'a-flex', 'pressure relief', 'comfort', 'settings'],
+    content: `Expiratory pressure relief reduces pressure during exhalation to improve comfort. ResMed = EPR (levels 1–3, full or ramp-only). Philips = Flex (levels 1–3) on CPAP; A-Flex on APAP (also adds inspiratory rise-time shaping). Fisher & Paykel = SensAwake (pressure drops when wakefulness detected). EPR effectively reduces EPAP: EPR 3 on CPAP 10 = ~7 cmH2O during exhalation. In APAP mode, EPR is calculated from minimum pressure, so minimum ≥ 5 is recommended to maintain effective EPAP ≥ 4. Not recommended for BiPAP users (PS already provides this).`,
+  },
+  {
+    id: 'settings-humidity',
+    topic: 'Humidification Settings',
+    category: 'settings',
+    tags: ['humidity', 'humidifier', 'dry mouth', 'congestion', 'rainout', 'settings'],
+    content: `Heated humidification reduces dryness of airways and mouth. Settings typically 0–8 or Auto. Low humidity → nasal dryness, nosebleeds, dry throat. High humidity → rainout (condensation in tubing). Heated tubing (e.g., ResMed ClimateLineAir, Philips DreamStation heated tube) is the most effective way to prevent rainout by warming air throughout tube length. In AutoClimate mode (ResMed), device manages humidity automatically. Recommended starting point: humidity 4–5, auto-adjust from there. Without heated tube, ensure tubing is covered/insulated in cold rooms.`,
+  },
+  {
+    id: 'settings-ramp',
+    topic: 'Ramp Settings',
+    category: 'settings',
+    tags: ['ramp', 'ramp time', 'start pressure', 'comfort', 'settings'],
+    content: `Ramp starts therapy at a lower pressure and gradually increases to therapeutic pressure over a set time (typically 5–45 minutes). Useful for patients who find full pressure uncomfortable at sleep onset. Ramp start pressure should be sufficient to prevent obvious apneas. Modern devices have "AutoRamp" (ResMed) which holds lower pressure until sleep onset is detected, then ramps quickly. If patient falls asleep quickly: reduce ramp time or disable. If patient wakes during ramp: lower start pressure or extend time.`,
+  },
+  {
+    id: 'settings-pressure-range',
+    topic: 'APAP Pressure Range Optimization',
+    category: 'settings',
+    tags: ['apap', 'pressure range', 'min pressure', 'max pressure', 'settings', 'titration'],
+    content: `APAP pressure range should be wide enough to capture nightly variation but not so wide that the algorithm hunts inappropriately. Starting range: 5–15 cmH2O is common. After 30–90 days of data, review 90th/95th percentile pressure and median pressure. If P90 is below maximum consistently: lower maximum to reduce noise/discomfort. If P90 is at or near maximum frequently: raise maximum and review AHI. Minimum should not be below 4 cmH2O; 5–6 cmH2O is typical to avoid low-pressure instability. Clinician review is required for fixed-pressure prescriptions.`,
+    clinicianOnly: false,
+  },
+
+  // ─── TROUBLESHOOTING ───
+  {
+    id: 'trouble-aerophagia',
+    topic: 'Aerophagia — Air Swallowing',
+    category: 'troubleshooting',
+    tags: ['aerophagia', 'bloating', 'gas', 'belching', 'pressure too high'],
+    content: `Aerophagia (swallowing air) causes bloating, belching, flatulence, abdominal discomfort. Common when CPAP pressure is too high. Management: 1) Reduce maximum pressure (if APAP) or reduce prescribed pressure (clinician required for CPAP). 2) Enable EPR/Flex to reduce expiratory pressure. 3) Switch from CPAP to APAP if not already. 4) Consider BiPAP (larger IPAP/EPAP differential). 5) Elevate head of bed. 6) Avoid eating 2–3 hours before bed. Aerophagia is a common cause of CPAP discontinuation — early intervention is critical. Symptoms typically resolve within days of pressure reduction.`,
+  },
+  {
+    id: 'trouble-dry-mouth',
+    topic: 'Dry Mouth on CPAP',
+    category: 'troubleshooting',
+    tags: ['dry mouth', 'dry throat', 'dehydration', 'mouth breathing', 'humidity'],
+    content: `Dry mouth on CPAP has two main causes: 1) Mouth breathing — air escapes through mouth, bypassing humidifier entirely. Fix: add chin strap, switch to full-face mask, try hybrid mask. 2) Insufficient humidification — even with nasal mask, airways dry out. Fix: increase humidity level, add/upgrade heated humidifier, use heated tubing. Both can coexist. Distinguish: if dry mouth with nasal mask = likely mouth breathing. If dry nose AND mouth with full-face = humidity. If waking with dry mouth AND air in stomach = mouth leak + aerophagia.`,
+  },
+  {
+    id: 'trouble-nasal-congestion',
+    topic: 'Nasal Congestion on CPAP',
+    category: 'troubleshooting',
+    tags: ['congestion', 'blocked nose', 'rhinitis', 'nasal', 'humidity'],
+    content: `Nasal congestion is a top cause of CPAP intolerance. Causes: pre-existing rhinitis (allergic/vasomotor), CPAP-induced turbinate swelling (rhinitis medicamentosa from dry air), anatomical (septal deviation, polyps). Solutions: 1) Increase humidification. 2) Heated tubing. 3) Nasal saline irrigation (neti pot) before bed. 4) Topical nasal corticosteroid spray (e.g., fluticasone, nasonex — long-term management). 5) Consider decongestant (short-term only — avoid prolonged use). 6) ENT referral for structural causes. 7) If congestion is severe, temporary switch to full-face mask. Full-face mask is a workaround, not a fix — address the congestion.`,
+  },
+  {
+    id: 'trouble-mask-leak',
+    topic: 'Mask Leak — Diagnosis and Resolution',
+    category: 'troubleshooting',
+    tags: ['mask leak', 'leak', 'seal', 'noise', 'eye irritation'],
+    content: `Mask leak > 24 L/min (ResMed) significantly impairs therapy efficacy and disturbs sleep. Diagnosis approach: 1) Identify location — eye irritation = nasal bridge leak, noise near nose = nasal seal, noise near mouth = full-face mouth area or full-face cheek. 2) Check machine data: leak graph shows when leaks occur. 3) Check fit — put mask on sitting up, pressurize machine, adjust straps minimally. Fixes: wrong size → resize; worn cushion → replace; over-tightening → loosen and rely on air-fill seal; positional leak → change mask type or add pillow positioning; bridge leak → try different mask design (under-nose cushion avoids bridge entirely).`,
+  },
+  {
+    id: 'trouble-rainout',
+    topic: 'Rainout — Condensation in Tubing',
+    category: 'troubleshooting',
+    tags: ['rainout', 'water in tube', 'condensation', 'gargling', 'humidity'],
+    content: `Rainout occurs when warm humidified air cools in the tubing and condenses into droplets. Symptoms: gurgling noise, water droplets in mask, sudden water splash into airway (startling). Solutions: 1) Reduce humidity level by 1–2 increments. 2) Install heated tubing (most effective solution — maintains air temperature). 3) Route tubing under bedcovers. 4) Use tubing wrap/insulation sleeve. 5) Place machine at or below bed level so condensate runs away from mask. In cold bedrooms (<18°C), heated tubing is almost always required to prevent rainout.`,
+  },
+  {
+    id: 'trouble-claustrophobia',
+    topic: 'Mask Claustrophobia and Anxiety',
+    category: 'troubleshooting',
+    tags: ['claustrophobia', 'anxiety', 'panic', 'desensitisation', 'adherence'],
+    content: `Mask anxiety/claustrophobia is common, especially at therapy initiation. Approach: 1) Start with minimal-contact mask (nasal pillows). 2) Desensitisation: hold mask near face without straps, then on face without pressure, then with low ramp pressure during daytime. 3) Use ramp/AutoRamp to ease pressure onset. 4) Short daytime nap sessions to build tolerance. 5) Cognitive reframing — focus on long-term health benefits. 6) CBT-I techniques for sleep-onset anxiety. 7) Consider anxiolytic consultation if severe (discuss with prescribing physician). Never force mask — gradual exposure is more effective.`,
+  },
+  {
+    id: 'trouble-residual-ahi',
+    topic: 'Residual AHI — Still Showing Events on Therapy',
+    category: 'troubleshooting',
+    tags: ['ahi', 'residual ahi', 'events', 'hypopnea', 'therapy failure', 'compliance'],
+    content: `AHI on therapy should ideally be <5, excellent <2. Residual AHI >5 requires investigation. Causes: 1) Pressure too low — APAP max too low, or CPAP pressure under-titrated. Increase max pressure. 2) Large leaks — leak-induced false AHI reduction or algorithm confusion. Fix leaks first. 3) Positional — supine-dominant residual events. Positional therapy (side-sleep). 4) Central or mixed apneas — consider ASV evaluation. 5) REM-related — REM-dominant events may require higher pressure for REM. 6) Wrong therapy mode — complex apnea may need BiPAP or ASV. Always review raw flow signal if available.`,
+    clinicianOnly: false,
+  },
+  {
+    id: 'trouble-fatigue',
+    topic: 'Still Feeling Tired Despite CPAP Use',
+    category: 'troubleshooting',
+    tags: ['fatigue', 'tired', 'esd', 'sleepy', 'insufficient sleep', 'compliance'],
+    content: `Persistent fatigue on CPAP therapy has many causes. Systematic review: 1) Usage hours — <4 hours/night is insufficient. Address adherence. 2) Residual AHI — check device data. 3) Mask leak — check data. 4) Comorbid sleep disorders: insomnia, restless legs syndrome (RLS), periodic limb movement disorder (PLMD), REM sleep behaviour disorder, narcolepsy. 5) Sleep debt — chronic sleep deprivation takes weeks to resolve after CPAP starts. 6) Other medical causes: hypothyroidism, anaemia, depression, medication side effects. 7) Inadequate sleep opportunity — lifestyle issue. Full sleep assessment and lab tests may be indicated if CPAP data looks good.`,
+  },
+  {
+    id: 'trouble-compliance',
+    topic: 'CPAP Compliance and Adherence Strategies',
+    category: 'troubleshooting',
+    tags: ['compliance', 'adherence', 'usage', 'motivation', 'habit'],
+    content: `Medicare/insurance requires ≥4 hours/night use on ≥70% of nights (30-day initial compliance window). Adherence predictors: symptom severity, self-efficacy, social support, early positive experience. Strategies: 1) Early troubleshooting of comfort issues (first 1–2 weeks are critical). 2) Regular remote monitoring and proactive outreach. 3) Patient education on benefits (cardiovascular, cognitive, quality of life). 4) CPAP apps (myAir for ResMed, DreamMapper for Philips) — gamification and daily scores. 5) Peer support groups. 6) Motivational interviewing techniques. 7) Address specific barriers individually (mask comfort, partner feedback, travel concerns).`,
+  },
+  {
+    id: 'trouble-skin',
+    topic: 'Skin Irritation and Pressure Sores',
+    category: 'troubleshooting',
+    tags: ['skin', 'redness', 'pressure sore', 'rash', 'dermatitis', 'silicone'],
+    content: `Skin irritation from CPAP masks: causes include over-tightening, silicone allergy, oil/product residue on skin, dirty cushion, wrong size. Solutions: 1) Check strap tension (finger should slip under headgear). 2) Clean face before bed (remove oils/creams). 3) Clean mask cushion daily with mild soap and water. 4) Consider gel or memory foam cushion alternatives. 5) Mask liner/fabric cover (e.g., Padacheek, Remzzzs) acts as barrier. 6) Silicone allergy: switch to cloth/foam mask (Sleepweaver) or use mask liners. 7) Persistent bridge sore: switch to under-nose design (AirFit N30, DreamWear). Replace cushion if discolouration or deformation present.`,
+  },
+
+  // ─── PROTOCOLS ───
+  {
+    id: 'protocol-onboarding',
+    topic: 'CPAP Onboarding Protocol',
+    category: 'protocol',
+    tags: ['onboarding', 'new patient', 'setup', 'first night', 'education'],
+    content: `Effective CPAP onboarding: Pre-therapy: mask fitting (minimum 3 options), machine education, humidifier setup, data app setup (myAir/DreamMapper). Night 1–3: short early use sessions (naps first if anxious), ramp enabled, low humidity then adjust. Week 1 follow-up: review data — usage, AHI, leak, comfort score. Adjust settings. Week 2–4: address remaining barriers, confirm compliance trajectory. Month 1: formal compliance review for insurance/Medicare. Key message to patient: "First 2 weeks are the hardest. Most problems are solvable. Don't stop without calling us first."`,
+  },
+  {
+    id: 'protocol-hospital-home',
+    topic: 'Hospital to Home PAP Transition',
+    category: 'protocol',
+    tags: ['hospital', 'inpatient', 'discharge', 'home care', 'transition'],
+    content: `Hospital-to-home PAP considerations: 1) Hospital machines (BiPAP/CPAP) settings differ from home devices — document hospital settings and replicate if appropriate. 2) Acute illness pressures may differ from stable outpatient needs — follow-up titration may be required post-recovery. 3) Confirm home equipment supply is arranged before discharge. 4) Educate patient on infection control (new mask/circuit for home use). 5) If BiPAP initiated in hospital for acute decompensated COPD or HF: outpatient reassessment at 6–8 weeks to determine if ongoing PAP is needed. 6) Ensure prescribing physician has communicated ongoing PAP requirements to home care provider.`,
+    clinicianOnly: true,
+  },
+  {
+    id: 'protocol-data-review',
+    topic: 'CPAP Data Interpretation',
+    category: 'protocol',
+    tags: ['data', 'ahi', 'leak', 'pressure', 'flow', 'compliance data', 'clinician'],
+    content: `Key CPAP data metrics: Usage hours (target ≥7h), AHI on therapy (target <5, ideally <2), Mask leak — 95th percentile (target <24 L/min for ResMed), Pressure 90th/95th percentile (shows if range is appropriate), Event breakdown: OA, H, CA, RE (ResMed) / OA, H, CA, VS (Philips). Red flags requiring urgent review: AHI persistently >10 despite adequate settings, central AHI >50% of total AHI (possible treatment-emergent CSA), large leaks >36 L/min, persistent flow limitation curves without pressure response. Remote monitoring (ResMed AirView, DreamMapper, Nox) allows proactive population management.`,
+    clinicianOnly: true,
+  },
+  {
+    id: 'protocol-cleaning',
+    topic: 'CPAP Equipment Cleaning and Maintenance',
+    category: 'protocol',
+    tags: ['cleaning', 'maintenance', 'hygiene', 'replace', 'wash'],
+    content: `Daily: rinse mask cushion and humidifier tub with warm water. Weekly: wash mask cushion, frame, headgear, and tubing in warm soapy water (mild dish soap), rinse thoroughly, air dry away from direct sunlight. Monthly: check tubing for cracks, check mask for discolouration or deformation. Replacement schedule: Cushion every 1–3 months, headgear every 6 months, tubing every 3–6 months (heated tubing: 6–12 months), water chamber every 6 months, full mask every 6 months, machine filter (disposable) every 2–4 weeks, machine filter (non-disposable) monthly. Avoid: dishwasher, bleach, alcohol, UV sanitizers on silicone (degrades material). CPAP sanitizers (SoClean, Lumin) — not recommended by manufacturers; void warranties.`,
+  },
+
+  // ─── EDUCATION ───
+  {
+    id: 'edu-osa-basics',
+    topic: 'Understanding OSA — Patient Education',
+    category: 'education',
+    tags: ['osa', 'sleep apnea', 'education', 'basics', 'patient'],
+    content: `Obstructive sleep apnea (OSA) occurs when the upper airway collapses repeatedly during sleep, blocking airflow. Each collapse (apnea) reduces blood oxygen and causes a brief arousal to restore airway tone. OSA severity: AHI 5–14 = mild, 15–29 = moderate, ≥30 = severe. Symptoms: snoring, witnessed apneas, non-restorative sleep, morning headache, excessive daytime sleepiness, mood disturbance, nocturia, sexual dysfunction. Untreated consequences: cardiovascular disease (HTN, AF, stroke, MI), metabolic syndrome, type 2 diabetes, cognitive impairment, MVA risk. CPAP is first-line treatment — addresses the mechanical cause directly.`,
+  },
+  {
+    id: 'edu-alternatives',
+    topic: 'CPAP Alternatives and Adjuncts',
+    category: 'education',
+    tags: ['alternatives', 'oral appliance', 'surgery', 'positional therapy', 'weight loss'],
+    content: `CPAP alternatives for OSA: 1) Mandibular Advancement Devices (MAD/OAT) — best for mild-moderate OSA or CPAP intolerance; requires dental referral. 2) Positional therapy — for positional OSA (supine-dominant); special pillows, vibrating devices (Night Shift, Zzoma). 3) Weight loss — significant AHI improvement with 10% body weight loss; bariatric surgery can resolve OSA. 4) Surgery: UPPP, DISE-guided airway surgery, maxillomandibular advancement, Inspire (hypoglossal nerve stimulator) for moderate-severe OSA with CPAP failure. 5) Nasal surgery — adjunct to improve CPAP tolerance, not curative alone. Note: all alternatives generally less effective than CPAP for moderate-severe OSA.`,
+  },
+  {
+    id: 'edu-travelling',
+    topic: 'Travelling with CPAP',
+    category: 'education',
+    tags: ['travel', 'flying', 'altitude', 'international', 'power', 'battery'],
+    content: `Travel tips: 1) CPAP is FAA-approved and TSA-exempt (screened separately). Carry-on only — never check equipment. 2) Carry physician letter and prescription. 3) Most modern machines auto-adjust for voltage (100–240V) — check label; carry international adapter plug set. 4) Altitude: most machines auto-adjust; confirm your model. Manual altitude setting on some older devices. 5) Water: use distilled water in humidifier; bottled water if unavailable (tap water can leave mineral deposits). 6) Without access to water/power: HME (heat-moisture exchanger) like AirMini HumidX can substitute for humidifier. 7) CPAP battery: goal zero, ResMed AirMini battery pack, PowerTraveller — confirm watt-hour for airline approval.`,
+  },
+]

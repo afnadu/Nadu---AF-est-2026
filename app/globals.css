@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+html,
+body {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.prose-sm p {
+  margin-bottom: 0.5rem;
+}
+
+.prose-sm ul,
+.prose-sm ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
