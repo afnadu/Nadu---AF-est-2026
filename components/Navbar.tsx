@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 const links = [
-  { href: '/patient', label: 'Patient Help', color: 'text-green-700 bg-green-50' },
-  { href: '/clinician', label: 'Clinician', color: 'text-blue-700 bg-blue-50' },
+  { href: '/patient', label: 'Patient Help' },
+  { href: '/clinician', label: 'Clinician' },
   { href: '/triage', label: 'Triage' },
   { href: '/products', label: 'Products' },
   { href: '/training', label: 'Protocols' },
@@ -15,17 +15,16 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname()
 
-  // Hide navbar on role-specific pages (they have their own headers)
   if (pathname === '/patient' || pathname === '/clinician') return null
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-[#E8E2D9] bg-[#FAF8F5]/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-600 text-sm font-extrabold text-white">E</span>
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1B4332] text-sm font-bold text-white">A</span>
           <div className="leading-none">
-            <p className="font-bold text-slate-900 text-sm">Clinic A</p>
-            <p className="text-xs text-slate-400">CPAP Triage Platform</p>
+            <p className="font-serif font-semibold text-[#1A1A1A] text-sm tracking-tight">Clinic A</p>
+            <p className="text-xs text-[#6B6560]">CPAP Triage Platform</p>
           </div>
         </Link>
 
@@ -35,10 +34,10 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                'rounded-md px-3 py-1.5 text-sm font-medium transition-colors',
+                'rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
                 pathname === link.href
-                  ? (link.color ?? 'bg-slate-100 text-slate-900')
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  ? 'bg-[#1B4332] text-white'
+                  : 'text-[#6B6560] hover:bg-[#E8E2D9] hover:text-[#1A1A1A]'
               )}
             >
               {link.label}
@@ -48,7 +47,7 @@ export default function Navbar() {
 
         <Link
           href="/"
-          className="rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-green-700"
+          className="rounded-full bg-[#1B4332] px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#15362A]"
         >
           Get Help
         </Link>

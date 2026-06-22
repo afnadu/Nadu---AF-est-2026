@@ -20,15 +20,15 @@ function renderMarkdown(text: string): string {
   return text
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/`(.+?)`/g, '<code class="rounded bg-slate-100 px-1 font-mono text-xs text-slate-700">$1</code>')
-    .replace(/^### (.+)$/gm, '<p class="font-bold text-sm mt-4 mb-1 text-slate-900 border-l-2 border-blue-400 pl-2">$1</p>')
-    .replace(/^## (.+)$/gm, '<p class="font-bold text-base mt-5 mb-2 text-slate-900">$1</p>')
-    .replace(/^- (.+)$/gm, '<li class="ml-4 list-disc text-slate-700">$1</li>')
-    .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 list-decimal text-slate-700">$1</li>')
+    .replace(/`(.+?)`/g, '<code class="rounded bg-[#F0F4F0] px-1 font-mono text-xs text-[#1B4332]">$1</code>')
+    .replace(/^### (.+)$/gm, '<p class="font-semibold text-sm mt-4 mb-1 text-[#1A1A1A] border-l-2 border-[#1B4332] pl-2">$1</p>')
+    .replace(/^## (.+)$/gm, '<p class="font-semibold text-base mt-5 mb-2 text-[#1A1A1A]">$1</p>')
+    .replace(/^- (.+)$/gm, '<li class="ml-4 list-disc text-[#1A1A1A]">$1</li>')
+    .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 list-decimal text-[#1A1A1A]">$1</li>')
     .replace(/(<li.*<\/li>\n?)+/g, m => `<ul class="my-2 space-y-1">${m}</ul>`)
-    .replace(/🟢 \*\*([^*]+)\*\*/g, '<span class="inline-flex items-center gap-1 rounded bg-green-50 border border-green-200 px-2 py-0.5 text-xs font-semibold text-green-700 font-mono">✓ $1</span>')
-    .replace(/🟡 \*\*([^*]+)\*\*/g, '<span class="inline-flex items-center gap-1 rounded bg-amber-50 border border-amber-200 px-2 py-0.5 text-xs font-semibold text-amber-700">⚠ $1</span>')
-    .replace(/🔴 \*\*([^*]+)\*\*/g, '<span class="inline-flex items-center gap-1 rounded bg-red-50 border border-red-200 px-2 py-0.5 text-xs font-semibold text-red-700">🚨 $1</span>')
+    .replace(/🟢 \*\*([^*]+)\*\*/g, '<span class="inline-flex items-center gap-1 rounded-full bg-[#ECFDF5] border border-[#6EE7B7] px-2 py-0.5 text-xs font-semibold text-[#065F46]">✓ $1</span>')
+    .replace(/🟡 \*\*([^*]+)\*\*/g, '<span class="inline-flex items-center gap-1 rounded-full bg-[#FFFBEB] border border-[#FDE68A] px-2 py-0.5 text-xs font-semibold text-[#92400E]">⚠ $1</span>')
+    .replace(/🔴 \*\*([^*]+)\*\*/g, '<span class="inline-flex items-center gap-1 rounded-full bg-[#FEF2F2] border border-[#FECACA] px-2 py-0.5 text-xs font-semibold text-[#991B1B]">🚨 $1</span>')
     .replace(/\n\n/g, '</p><p class="mt-2">')
     .replace(/\n/g, '<br/>')
 }
@@ -91,28 +91,28 @@ export default function ClinicianChat() {
   }
 
   return (
-    <div className="flex h-full flex-col bg-white">
+    <div className="flex h-full flex-col bg-[#FAF8F5]">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-blue-100 bg-gradient-to-r from-slate-900 to-blue-950 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-[#15362A] bg-[#1B4332] px-4 py-3">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-lg font-bold text-white shadow">E</div>
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-lg font-bold text-white">A</div>
           <div>
-            <p className="font-bold text-white text-sm leading-none">Clinic A</p>
-            <p className="text-xs text-blue-300 mt-0.5">Clinical Decision Support</p>
+            <p className="font-serif font-semibold text-white text-sm leading-none tracking-tight">Clinic A</p>
+            <p className="text-xs text-white/60 mt-0.5">Clinical Decision Support</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowContext(c => !c)}
             className={cn(
-              'rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors',
-              showContext ? 'border-blue-400 bg-blue-900 text-blue-200' : 'border-slate-600 text-slate-400 hover:border-slate-500 hover:text-slate-300'
+              'rounded-full border px-3 py-1.5 text-xs font-medium transition-colors',
+              showContext ? 'border-white/40 bg-white/20 text-white' : 'border-white/20 text-white/60 hover:border-white/40 hover:text-white'
             )}
           >
             {showContext ? 'Hide' : 'Show'} protocols
           </button>
-          <Link href="/" className="rounded-lg border border-slate-600 px-3 py-1.5 text-xs font-medium text-slate-400 hover:border-slate-500 hover:text-slate-300">
-            ← Switch role
+          <Link href="/" className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-medium text-white/60 hover:border-white/40 hover:text-white">
+            ← Back
           </Link>
         </div>
       </div>
@@ -120,8 +120,8 @@ export default function ClinicianChat() {
       <div className="flex flex-1 overflow-hidden">
         {/* Protocols sidebar */}
         {showContext && (
-          <div className="hidden w-64 flex-shrink-0 overflow-y-auto border-r border-slate-100 bg-slate-50 p-4 lg:block">
-            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">Quick Reference</p>
+          <div className="hidden w-64 flex-shrink-0 overflow-y-auto border-r border-[#E8E2D9] bg-white p-4 lg:block">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#1B4332]">Quick Reference</p>
             <div className="space-y-2">
               {[
                 { label: 'AASM OSA Severity', value: 'AHI: mild 5–14, mod 15–29, severe ≥30' },
@@ -135,14 +135,14 @@ export default function ClinicianChat() {
                 { label: 'Headgear Replace', value: 'Every 6 months' },
                 { label: 'Machine Lifespan', value: '5–7 years typical' },
               ].map(item => (
-                <div key={item.label} className="rounded-lg bg-white border border-slate-200 p-2.5">
-                  <p className="text-xs font-semibold text-slate-700">{item.label}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">{item.value}</p>
+                <div key={item.label} className="rounded-2xl bg-[#FAF8F5] border border-[#E8E2D9] p-2.5">
+                  <p className="text-xs font-semibold text-[#1A1A1A]">{item.label}</p>
+                  <p className="text-xs text-[#6B6560] mt-0.5">{item.value}</p>
                 </div>
               ))}
             </div>
 
-            <p className="mt-4 mb-2 text-xs font-bold uppercase tracking-wider text-slate-500">Red Flags</p>
+            <p className="mt-4 mb-2 text-xs font-semibold uppercase tracking-wider text-[#1B4332]">Red Flags</p>
             <div className="space-y-1.5">
               {[
                 'AHI >10 with good seal → pressure adjustment',
@@ -150,9 +150,9 @@ export default function ClinicianChat() {
                 'Persistent fatigue 3+ months good compliance → comorbidity workup',
                 'New cardiac/respiratory symptoms → urgent medical review',
               ].map((flag, i) => (
-                <div key={i} className="flex gap-1.5 rounded-lg bg-red-50 border border-red-100 p-2">
-                  <span className="flex-shrink-0 text-red-500 text-xs mt-0.5">⚠️</span>
-                  <p className="text-xs text-red-700">{flag}</p>
+                <div key={i} className="flex gap-1.5 rounded-2xl bg-[#FEF2F2] border border-[#FECACA] p-2">
+                  <span className="flex-shrink-0 text-xs mt-0.5">⚠️</span>
+                  <p className="text-xs text-[#991B1B]">{flag}</p>
                 </div>
               ))}
             </div>
@@ -164,10 +164,10 @@ export default function ClinicianChat() {
           <div className="flex-1 overflow-y-auto px-4 py-6">
             {messages.length === 0 ? (
               <div className="mx-auto max-w-2xl">
-                <div className="mb-6 rounded-xl border border-blue-200 bg-blue-50 p-4">
-                  <p className="text-sm font-bold text-blue-900">Clinical Mode Active</p>
-                  <p className="mt-1 text-xs text-blue-700">
-                    Full clinical terminology, data-driven guidance, titration protocols, Medicare requirements, and prescribing-level detail. All Clinic A product specifications included.
+                <div className="mb-6 rounded-2xl border border-[#E8E2D9] bg-white p-4">
+                  <p className="font-serif text-sm font-semibold text-[#1B4332]">Clinical Mode Active</p>
+                  <p className="mt-1 text-xs text-[#6B6560]">
+                    Full clinical terminology, data-driven guidance, titration protocols, Medicare requirements, and prescribing-level detail.
                   </p>
                 </div>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -175,7 +175,7 @@ export default function ClinicianChat() {
                     <button
                       key={s.text}
                       onClick={() => send(s.text)}
-                      className="flex items-start gap-2 rounded-xl border border-slate-200 bg-slate-50 p-3 text-left text-xs text-slate-700 transition-all hover:border-blue-300 hover:bg-blue-50 hover:text-blue-800"
+                      className="flex items-start gap-2 rounded-2xl border border-[#E8E2D9] bg-white p-3 text-left text-xs text-[#1A1A1A] transition-all hover:border-[#1B4332] hover:shadow-sm"
                     >
                       <span className="text-base flex-shrink-0">{s.icon}</span>
                       <span>{s.text}</span>
@@ -188,13 +188,13 @@ export default function ClinicianChat() {
                 {messages.map((msg, i) => (
                   <div key={i} className={cn('flex gap-3', msg.role === 'user' ? 'justify-end' : 'justify-start')}>
                     {msg.role === 'assistant' && (
-                      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl bg-blue-600 text-xs font-bold text-white shadow">E</div>
+                      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#1B4332] text-xs font-bold text-white shadow-sm">A</div>
                     )}
                     <div className={cn(
                       'max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-relaxed',
                       msg.role === 'user'
-                        ? 'bg-slate-800 text-white rounded-br-sm font-mono text-xs'
-                        : 'bg-white border border-slate-200 text-slate-800 rounded-bl-sm shadow-sm'
+                        ? 'bg-[#1B4332] text-white rounded-br-sm font-mono text-xs'
+                        : 'bg-white border border-[#E8E2D9] text-[#1A1A1A] rounded-bl-sm shadow-sm'
                     )}>
                       {msg.role === 'assistant' ? (
                         <>
@@ -202,7 +202,7 @@ export default function ClinicianChat() {
                           {loading && i === messages.length - 1 && msg.content === '' && (
                             <span className="inline-flex gap-1 pt-1">
                               {[0, 1, 2].map(n => (
-                                <span key={n} className="h-2 w-2 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: `${n * 0.1}s` }} />
+                                <span key={n} className="h-2 w-2 rounded-full bg-[#1B4332]/40 animate-bounce" style={{ animationDelay: `${n * 0.1}s` }} />
                               ))}
                             </span>
                           )}
@@ -210,7 +210,7 @@ export default function ClinicianChat() {
                       ) : msg.content}
                     </div>
                     {msg.role === 'user' && (
-                      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl bg-slate-700 text-xs text-slate-300 shadow-sm">MD</div>
+                      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#1B4332]/20 text-xs text-[#1B4332] font-semibold shadow-sm">MD</div>
                     )}
                   </div>
                 ))}
@@ -220,9 +220,9 @@ export default function ClinicianChat() {
           </div>
 
           {/* Input */}
-          <div className="border-t border-slate-200 bg-white px-4 py-3">
+          <div className="border-t border-[#E8E2D9] bg-white px-4 py-3">
             <div className="mx-auto max-w-2xl">
-              <div className="flex gap-2 rounded-2xl border border-slate-300 bg-slate-50 p-2 focus-within:border-blue-400 focus-within:ring-2 focus-within:ring-blue-100">
+              <div className="flex gap-2 rounded-2xl border border-[#E8E2D9] bg-[#FAF8F5] p-2 focus-within:border-[#1B4332] focus-within:ring-2 focus-within:ring-[#1B4332]/10">
                 <textarea
                   ref={inputRef}
                   value={input}
@@ -230,22 +230,22 @@ export default function ClinicianChat() {
                   onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(input) } }}
                   placeholder="Clinical question, patient data, protocol query..."
                   rows={1}
-                  className="flex-1 resize-none bg-transparent font-mono text-sm text-slate-800 placeholder-slate-400 outline-none"
+                  className="flex-1 resize-none bg-transparent font-mono text-sm text-[#1A1A1A] placeholder-[#6B6560] outline-none"
                   style={{ maxHeight: '120px' }}
                   onInput={e => { const el = e.target as HTMLTextAreaElement; el.style.height = 'auto'; el.style.height = `${el.scrollHeight}px` }}
                 />
                 <button
                   onClick={() => send(input)}
                   disabled={!input.trim() || loading}
-                  className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white transition-colors hover:bg-blue-700 disabled:opacity-40"
+                  className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-[#1B4332] text-white transition-colors hover:bg-[#15362A] disabled:opacity-40"
                 >
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" strokeLinejoin="round" strokeLinecap="round" />
                   </svg>
                 </button>
               </div>
-              <p className="mt-1.5 text-xs text-slate-400">
-                Clinical support tool — verify all clinical decisions against current guidelines and patient-specific factors. Clinic A clinical team: 1300 064 779
+              <p className="mt-1.5 text-xs text-[#6B6560]">
+                Verify all clinical decisions against current guidelines and patient-specific factors. Clinic A: 1300 064 779
               </p>
             </div>
           </div>
