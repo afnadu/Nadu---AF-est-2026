@@ -1,6 +1,51 @@
 import type { KnowledgeChunk } from '@/types'
 
 export const cpapKnowledge: KnowledgeChunk[] = [
+  // ─── BMC MACHINES ───
+  {
+    id: 'machine-bmc-overview',
+    topic: 'BMC CPAP Machines — Brand Overview',
+    category: 'machine',
+    tags: ['bmc', 'luna', 'g3', 'iq', 'machine', 'brand'],
+    content: `BMC Medical is a Chinese manufacturer producing TGA-approved CPAP and APAP devices sold in Australia. Main product lines: Luna G3 series (current generation) and Luna iQ series (premium). BMC machines are budget-friendly entry-level to mid-range devices, commonly used in public hospital programs and value-focused sleep clinics. Key features common to BMC devices: iCode algorithm for APAP, Bluetooth connectivity, compatible with ResMed-style standard tubing (22mm), cloud data via SleepSync app. Not compatible with ResMed or F&P heated tubes — uses standard unheated tubing unless a BMC-specific heated option is purchased.`,
+  },
+  {
+    id: 'machine-bmc-luna-g3-auto',
+    topic: 'BMC Luna G3 Auto APAP',
+    category: 'machine',
+    tags: ['bmc', 'luna g3', 'apap', 'auto', 'machine'],
+    content: `BMC Luna G3 Auto is the flagship APAP in BMC's current range. Uses the iCode algorithm to auto-adjust pressure in response to apneas, hypopneas, and snoring events. Pressure range: 4–20 cmH2O. Built-in humidifier with standard water chamber. Bluetooth connectivity syncs to SleepSync app for patient data review. OLED screen. Noise level ~26 dBA. Comfort settings: A-Flex (expiratory pressure relief, similar to ResMed EPR — levels 1–3). Data reporting: AHI, leak rate, usage hours, pressure percentiles exportable for clinician review. TGA-approved, NDIS-fundable. Good budget alternative to AirSense 10/11 for cost-conscious patients. Key limitation: no 4G built-in — relies on Bluetooth to patient's phone for data upload.`,
+  },
+  {
+    id: 'machine-bmc-luna-g3-fixed',
+    topic: 'BMC Luna G3 Fixed CPAP',
+    category: 'machine',
+    tags: ['bmc', 'luna g3', 'cpap', 'fixed', 'machine'],
+    content: `BMC Luna G3 Fixed delivers a single clinician-prescribed pressure. Entry-level CPAP option. All the same platform as the G3 Auto but with fixed pressure mode only. Suitable for patients with a stable titrated CPAP pressure who do not require auto-adjusting. A-Flex comfort feature available. Standard humidifier chamber. Compatible with most universal masks via standard 22mm connection. Commonly used in hospital discharge pathways due to lower cost.`,
+  },
+  {
+    id: 'machine-bmc-luna-iq',
+    topic: 'BMC Luna iQ Series',
+    category: 'machine',
+    tags: ['bmc', 'luna iq', 'apap', 'premium', 'machine'],
+    content: `BMC Luna iQ is the premium tier of the BMC range. Key upgrades over G3: integrated 4G modem for direct cloud upload without relying on patient's phone, improved iCode+ algorithm, colour touchscreen, enhanced data analytics via eSiesta cloud platform for clinicians. Pressure range: 4–20 cmH2O. Quieter motor than G3. Heated humidifier with auto-humidity function. Compatible with optional BMC heated breathing tube for rainout prevention. Good direct competitor to ResMed AirSense 11 at a lower price point. Clinical data reporting is comparable but SleepSync/eSiesta platform is less feature-rich than ResMed AirView.`,
+    clinicianOnly: false,
+  },
+  {
+    id: 'machine-bmc-masks',
+    topic: 'BMC Masks — N5A and G Series',
+    category: 'mask',
+    tags: ['bmc', 'n5a', 'mask', 'nasal', 'bundle'],
+    content: `BMC produces their own mask range, most commonly bundled with machine purchases. The BMC N5A is a nasal mask offering a soft silicone cushion in S/M/L sizes. Build quality is functional but below ResMed and F&P premium offerings. Suitable as a starter mask, particularly for patients trialling therapy before committing to a premium mask. Compatible with standard 22mm CPAP tubing. Headgear and cushions are replaced separately. For patients requiring a precise fit or using higher pressures (>15 cmH2O), upgrading to ResMed or F&P masks is generally recommended.`,
+  },
+  {
+    id: 'machine-bmc-troubleshooting',
+    topic: 'BMC Device Troubleshooting',
+    category: 'troubleshooting',
+    tags: ['bmc', 'luna', 'troubleshooting', 'error', 'data'],
+    content: `Common BMC troubleshooting: (1) Data not syncing — ensure Bluetooth is on and SleepSync app is open near the device when therapy ends; for iQ, check 4G is active and SIM is installed. (2) Humidifier leaking — BMC chambers are not interchangeable with ResMed/F&P; always use the BMC-specific replacement chamber. (3) A-Flex discomfort — reduce A-Flex level or disable; if still uncomfortable check pressure range is appropriate. (4) Higher-than-expected AHI — BMC's iCode algorithm may classify events differently from ResMed; compare P90 pressure (should be ≤15 for typical OSA) and leak rate before adjusting settings. (5) Noise — G3 is slightly louder than AirSense 11; ensure device is on a flat surface and filters are clean.`,
+  },
+
   // ─── MACHINE TYPES ───
   {
     id: 'machine-cpap',
