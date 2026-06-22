@@ -3,8 +3,8 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 
 export const metadata: Metadata = {
-  title: 'Nadu Sleep Solutions — CPAP Triage Platform',
-  description: 'Expert CPAP triage, troubleshooting, and clinical support powered by AI',
+  title: 'Easy CPAP — CPAP Triage Platform',
+  description: 'Expert CPAP support for patients and clinicians — powered by AI. Australia\'s most trusted CPAP store.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

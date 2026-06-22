@@ -1,8 +1,13 @@
 import { cpapKnowledge } from '@/data/cpap-knowledge'
 import { naduProducts, naduTenantConfig } from '@/data/nadu-products'
-import type { KnowledgeChunk, UserMode } from '@/types'
+import { easyCpapProducts, easyCpapTenantConfig } from '@/data/easycpap-products'
+import type { KnowledgeChunk, UserMode, TenantConfig, Product } from '@/types'
 
-const STOP_WORDS = new Set(['the', 'is', 'at', 'which', 'on', 'a', 'an', 'and', 'or', 'but', 'in', 'with', 'my', 'i', 'it', 'to', 'do', 'can', 'how', 'what', 'why'])
+const STOP_WORDS = new Set([
+  'the', 'is', 'at', 'which', 'on', 'a', 'an', 'and', 'or', 'but',
+  'in', 'with', 'my', 'i', 'it', 'to', 'do', 'can', 'how', 'what', 'why',
+  'me', 'for', 'be', 'are', 'was', 'have', 'has', 'this', 'that', 'will'
+])
 
 function tokenise(text: string): string[] {
   return text
@@ -25,6 +30,16 @@ function scoreChunk(chunk: KnowledgeChunk, queryTokens: string[]): number {
   return score
 }
 
+function scoreProduct(product: Product, queryTokens: string[]): number {
+  const text = `${product.name} ${product.description} ${product.features.join(' ')} ${product.indications.join(' ')} ${product.category}`.toLowerCase()
+  let score = 0
+  for (const token of queryTokens) {
+    if (text.includes(token)) score++
+    if (product.name.toLowerCase().includes(token)) score += 2
+  }
+  return score
+}
+
 export function retrieveKnowledge(query: string, mode: UserMode, topK = 5): string {
   const tokens = tokenise(query)
   if (tokens.length === 0) return ''
@@ -43,48 +58,60 @@ export function retrieveKnowledge(query: string, mode: UserMode, topK = 5): stri
     .join('\n\n')
 }
 
-export function retrieveProductContext(query: string): string {
-  const tokens = tokenise(query)
-  const productKeywords = ['mask', 'machine', 'device', 'tube', 'airsense', 'airfit', 'airmini', 'airviva', 'f20', 'n20', 'p10', 'n30', 'dreamstation', 'sleepstyle', 'product', 'recommend', 'buy', 'purchase', 'brand', 'model']
+const PRODUCT_TRIGGER_TOKENS = [
+  'mask', 'machine', 'device', 'tube', 'tubing', 'airsense', 'airfit', 'airmini',
+  'aircurve', 'f20', 'n20', 'p10', 'n30', 'f30', 'dreamstation', 'sleepstyle',
+  'luna', 'bmc', 'fisher', 'paykel', 'resmed', 'philips', 'medistrom', 'battery',
+  'pilot', 'filter', 'humidifier', 'chamber', 'humidity', 'product', 'recommend',
+  'buy', 'purchase', 'brand', 'model', 'cost', 'price', 'best', 'choose', 'cushion',
+  'headgear', 'cleaning', 'wipes', 'evora', 'brevida', 'pilairo', 'vitera', 'eson',
+  'travel', 'pillow', 'nasal', 'full', 'face',
+]
 
-  const isProductQuery = tokens.some(t => productKeywords.includes(t))
+export function retrieveProductContext(query: string, tenant: string, topK = 3): string {
+  const tokens = tokenise(query)
+  const isProductQuery = tokens.some(t => PRODUCT_TRIGGER_TOKENS.includes(t))
   if (!isProductQuery) return ''
 
-  const scored = naduProducts
-    .map(p => {
-      const text = `${p.name} ${p.description} ${p.features.join(' ')} ${p.indications.join(' ')} ${p.category}`.toLowerCase()
-      let score = 0
-      for (const token of tokens) {
-        if (text.includes(token)) score++
-      }
-      return { p, score }
-    })
+  const products = tenant === 'easycpap' ? easyCpapProducts : naduProducts
+
+  const scored = products
+    .map(p => ({ p, score: scoreProduct(p, tokens) }))
     .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score)
-    .slice(0, 3)
+    .slice(0, topK)
 
   if (scored.length === 0) return ''
 
-  const lines = scored.map(({ p }) =>
-    `**${p.name}** (${p.category}): ${p.description}\nKey features: ${p.features.slice(0, 3).join(', ')}`
-  )
+  const storeName = tenant === 'easycpap' ? 'Easy CPAP' : 'Nadu'
+  const lines = scored.map(({ p }) => {
+    const parts = [
+      `**${p.name}** (${p.category}) — ${p.description}`,
+      `Features: ${p.features.slice(0, 4).join('; ')}`,
+    ]
+    if (p.indications?.length) parts.push(`Indicated for: ${p.indications.slice(0, 3).join(', ')}`)
+    if (p.troubleshootingTips?.length) parts.push(`Tip: ${p.troubleshootingTips[0]}`)
+    return parts.join('\n')
+  })
 
-  return `### Nadu Products Relevant to This Query\n${lines.join('\n\n')}`
+  return `### ${storeName} Products Relevant to This Query\n${lines.join('\n\n')}`
 }
 
-export function buildContextBlock(query: string, mode: UserMode): string {
+export function buildContextBlock(query: string, mode: UserMode, tenant = 'easycpap'): string {
   const knowledge = retrieveKnowledge(query, mode)
-  const products = retrieveProductContext(query)
-  const parts = [knowledge, products].filter(Boolean)
-  return parts.join('\n\n---\n\n')
+  const products = retrieveProductContext(query, tenant)
+  return [knowledge, products].filter(Boolean).join('\n\n---\n\n')
 }
 
-export function getTenantContext(): string {
-  const cfg = naduTenantConfig
+export function getTenantConfig(tenant: string): TenantConfig {
+  return tenant === 'easycpap' ? easyCpapTenantConfig : naduTenantConfig
+}
+
+export function getTenantContext(tenant: string): string {
+  const cfg = getTenantConfig(tenant)
   return `
 You are the AI assistant for **${cfg.name}** — ${cfg.tagline}.
 ${cfg.customContext}
-
 Contact: ${cfg.phone ?? ''} | ${cfg.clinicianEmail ?? ''} | ${cfg.website ?? ''}
   `.trim()
 }

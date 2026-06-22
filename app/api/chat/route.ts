@@ -9,15 +9,19 @@ export const runtime = 'nodejs'
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
 export async function POST(req: NextRequest) {
-  const { messages, mode = 'patient' }: { messages: ChatMessage[]; mode: UserMode } = await req.json()
+  const {
+    messages,
+    mode = 'patient',
+    tenant = 'easycpap',
+  }: { messages: ChatMessage[]; mode: UserMode; tenant?: string } = await req.json()
 
   if (!messages?.length) {
     return new Response('No messages provided', { status: 400 })
   }
 
   const lastUserMessage = [...messages].reverse().find(m => m.role === 'user')?.content ?? ''
-  const injectedContext = buildContextBlock(lastUserMessage, mode)
-  const systemPrompt = buildSystemPrompt(mode, injectedContext)
+  const injectedContext = buildContextBlock(lastUserMessage, mode, tenant)
+  const systemPrompt = buildSystemPrompt(mode, tenant, injectedContext)
 
   const stream = client.messages.stream({
     model: 'claude-sonnet-4-6',
@@ -30,10 +34,7 @@ export async function POST(req: NextRequest) {
     async start(controller) {
       try {
         for await (const chunk of stream) {
-          if (
-            chunk.type === 'content_block_delta' &&
-            chunk.delta.type === 'text_delta'
-          ) {
+          if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
             controller.enqueue(new TextEncoder().encode(chunk.delta.text))
           }
         }

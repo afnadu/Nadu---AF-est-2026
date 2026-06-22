@@ -1,169 +1,163 @@
-import Link from 'next/link'
+'use client'
 
-const cards = [
-  {
-    href: '/chat',
-    icon: '🤖',
-    title: 'AI Assistant',
-    description: 'Chat with a CPAP-specialist AI for troubleshooting, education, and clinical guidance. Switch between patient, clinician, training, and admin modes.',
-    cta: 'Start chatting',
-    color: 'from-teal-500 to-teal-600',
-    badge: 'Most popular',
-  },
-  {
-    href: '/triage',
-    icon: '🔍',
-    title: 'Visual Triage',
-    description: 'Navigate a guided decision tree to diagnose CPAP problems. Each path ends with a prioritised, step-by-step intervention checklist.',
-    cta: 'Open triage tool',
-    color: 'from-blue-500 to-blue-600',
-  },
-  {
-    href: '/training',
-    icon: '📚',
-    title: 'Clinical Protocols',
-    description: 'Interactive checklists for every stage of CPAP care — onboarding, follow-up, titration, hospital-to-home transitions, and staff training.',
-    cta: 'View protocols',
-    color: 'from-purple-500 to-purple-600',
-  },
-  {
-    href: '/products',
-    icon: '🛒',
-    title: 'Product Catalog',
-    description: 'Browse the full Nadu product range with specifications, indications, compatibility details, and troubleshooting tips for every device and mask.',
-    cta: 'Browse products',
-    color: 'from-orange-500 to-orange-600',
-  },
-]
-
-const stats = [
-  { value: '20+', label: 'CPAP problems covered' },
-  { value: '5', label: 'Triage categories' },
-  { value: '10+', label: 'Clinical protocols' },
-  { value: '4', label: 'User modes' },
-]
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { cn } from '@/lib/utils'
 
 export default function Home() {
+  const router = useRouter()
+  const [hovering, setHovering] = useState<'patient' | 'clinician' | null>(null)
+
   return (
-    <div className="h-full overflow-y-auto">
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 px-6 py-20 text-white">
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium">
-            <span className="h-2 w-2 rounded-full bg-teal-400 animate-pulse" />
-            AI-Powered CPAP Platform
-          </div>
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Expert CPAP Support,<br />
-            <span className="text-teal-400">Available 24/7</span>
-          </h1>
-          <p className="mt-6 text-lg text-slate-300 max-w-2xl mx-auto">
-            Nadu&apos;s AI triage platform combines deep clinical knowledge with smart guidance tools — for patients, clinicians, and sleep therapy teams.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/chat"
-              className="rounded-xl bg-teal-500 px-6 py-3 font-semibold text-white shadow-lg shadow-teal-500/25 transition-all hover:bg-teal-400 hover:shadow-teal-400/30"
-            >
-              Get help now
-            </Link>
-            <Link
-              href="/triage"
-              className="rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition-all hover:bg-white/20"
-            >
-              Visual triage
-            </Link>
-          </div>
-        </div>
-      </section>
+    <div className="flex h-full flex-col overflow-hidden">
+      {/* Split screen */}
+      <div className="flex flex-1 flex-col md:flex-row overflow-hidden">
 
-      {/* Stats */}
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-8">
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {stats.map(s => (
-              <div key={s.label} className="text-center">
-                <p className="text-3xl font-extrabold text-teal-600">{s.value}</p>
-                <p className="mt-1 text-sm text-slate-500">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Feature cards */}
-      <section className="px-6 py-16">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900">
-            Everything your sleep clinic needs
-          </h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {cards.map(card => (
-              <Link
-                key={card.href}
-                href={card.href}
-                className="group relative rounded-2xl border-2 border-slate-200 bg-white p-6 transition-all hover:border-teal-300 hover:shadow-lg"
-              >
-                {card.badge && (
-                  <span className="absolute -top-2.5 right-4 rounded-full bg-teal-500 px-3 py-0.5 text-xs font-bold text-white shadow">
-                    {card.badge}
-                  </span>
-                )}
-                <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${card.color} text-2xl shadow-sm`}>
-                  {card.icon}
-                </div>
-                <h3 className="text-lg font-bold text-slate-900">{card.title}</h3>
-                <p className="mt-2 text-sm text-slate-500 leading-relaxed">{card.description}</p>
-                <div className="mt-4 flex items-center gap-1 text-sm font-semibold text-teal-600 group-hover:gap-2 transition-all">
-                  {card.cta}
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Use cases */}
-      <section className="bg-white px-6 py-16 border-t border-slate-100">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900">Who uses the platform?</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { icon: '🛏️', role: 'Patients', use: 'Self-service troubleshooting at home, any time of day' },
-              { icon: '🩺', role: 'Clinicians', use: 'Clinical decision support, data interpretation, protocol checklists' },
-              { icon: '🎓', role: 'New Staff', use: 'Structured onboarding, equipment familiarity, clinical quizzes' },
-              { icon: '⚙️', role: 'Practice Managers', use: 'Protocol design, product knowledge, compliance reporting' },
-            ].map(item => (
-              <div key={item.role} className="rounded-xl bg-slate-50 p-5">
-                <span className="text-3xl">{item.icon}</span>
-                <h3 className="mt-3 font-bold text-sm text-slate-900">{item.role}</h3>
-                <p className="mt-1.5 text-xs text-slate-500 leading-relaxed">{item.use}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-teal-600 px-6 py-16 text-center text-white">
-        <h2 className="text-2xl font-bold">Ready to improve patient outcomes?</h2>
-        <p className="mt-2 text-teal-100">Get clinical-grade CPAP support in seconds.</p>
-        <Link
-          href="/chat"
-          className="mt-6 inline-block rounded-xl bg-white px-8 py-3 font-bold text-teal-700 shadow-lg transition-all hover:bg-teal-50"
+        {/* PATIENT side */}
+        <button
+          onClick={() => router.push('/patient')}
+          onMouseEnter={() => setHovering('patient')}
+          onMouseLeave={() => setHovering(null)}
+          className={cn(
+            'relative flex flex-1 flex-col items-center justify-center overflow-hidden px-8 py-16 text-left transition-all duration-500 focus:outline-none',
+            hovering === 'clinician' ? 'flex-[0.35] md:flex-[0.35]' : hovering === 'patient' ? 'flex-[0.65] md:flex-[0.65]' : 'flex-1'
+          )}
+          style={{ background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 40%, #bbf7d0 100%)' }}
         >
-          Open AI Assistant
-        </Link>
-      </section>
+          {/* Background decoration */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-green-200/40 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-emerald-200/40 blur-3xl" />
+          </div>
 
-      <footer className="border-t border-slate-200 bg-white px-6 py-8 text-center text-xs text-slate-400">
-        © 2026 Nadu Sleep Solutions. This platform provides clinical support tools only — not a substitute for professional medical advice.
-        <br />
-        For urgent clinical concerns, contact your prescribing physician or emergency services.
-      </footer>
+          <div className="relative z-10 max-w-sm text-center">
+            <div className={cn(
+              'mb-6 inline-flex items-center justify-center rounded-3xl bg-white shadow-xl transition-all duration-300',
+              hovering === 'patient' ? 'h-28 w-28 text-6xl' : 'h-20 w-20 text-4xl'
+            )}>
+              🛏️
+            </div>
+
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+              Patient Support
+            </div>
+
+            <h2 className={cn(
+              'mt-3 font-extrabold tracking-tight text-slate-900 transition-all duration-300',
+              hovering === 'patient' ? 'text-4xl' : 'text-2xl md:text-3xl'
+            )}>
+              I&apos;m a Patient
+            </h2>
+
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              Get plain-language help with your CPAP therapy — setup, comfort, troubleshooting, and finding the right equipment.
+            </p>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {['My mask leaks', 'Can\'t sleep with it', 'Dry mouth', 'Need new mask', 'How to clean it'].map(q => (
+                <span key={q} className="rounded-full border border-green-200 bg-white/80 px-3 py-1 text-xs text-slate-600">
+                  {q}
+                </span>
+              ))}
+            </div>
+
+            <div className={cn(
+              'mt-8 inline-flex items-center gap-2 rounded-2xl bg-green-600 px-8 py-4 font-bold text-white shadow-lg shadow-green-600/30 transition-all duration-300',
+              hovering === 'patient' ? 'scale-105 bg-green-500' : ''
+            )}>
+              Get Help
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </button>
+
+        {/* Divider */}
+        <div className="relative flex items-center justify-center md:flex-col">
+          <div className="hidden h-full w-px bg-slate-200 md:block" />
+          <div className="block h-px w-full bg-slate-200 md:hidden" />
+          <div className="absolute flex h-10 w-10 items-center justify-center rounded-full border-2 border-slate-200 bg-white text-xs font-bold text-slate-500 shadow-sm">
+            OR
+          </div>
+        </div>
+
+        {/* CLINICIAN side */}
+        <button
+          onClick={() => router.push('/clinician')}
+          onMouseEnter={() => setHovering('clinician')}
+          onMouseLeave={() => setHovering(null)}
+          className={cn(
+            'relative flex flex-1 flex-col items-center justify-center overflow-hidden px-8 py-16 text-left transition-all duration-500 focus:outline-none',
+            hovering === 'patient' ? 'flex-[0.35] md:flex-[0.35]' : hovering === 'clinician' ? 'flex-[0.65] md:flex-[0.65]' : 'flex-1'
+          )}
+          style={{ background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 40%, #bfdbfe 100%)' }}
+        >
+          {/* Background decoration */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute -left-20 -top-20 h-80 w-80 rounded-full bg-blue-200/40 blur-3xl" />
+            <div className="absolute -bottom-20 -right-20 h-80 w-80 rounded-full bg-indigo-200/40 blur-3xl" />
+          </div>
+
+          <div className="relative z-10 max-w-sm text-center">
+            <div className={cn(
+              'mb-6 inline-flex items-center justify-center rounded-3xl bg-white shadow-xl transition-all duration-300',
+              hovering === 'clinician' ? 'h-28 w-28 text-6xl' : 'h-20 w-20 text-4xl'
+            )}>
+              🩺
+            </div>
+
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+              Clinical Support
+            </div>
+
+            <h2 className={cn(
+              'mt-3 font-extrabold tracking-tight text-slate-900 transition-all duration-300',
+              hovering === 'clinician' ? 'text-4xl' : 'text-2xl md:text-3xl'
+            )}>
+              I&apos;m a Clinician
+            </h2>
+
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">
+              Clinical decision support, data interpretation, titration guidance, protocols, Medicare compliance, and product selection.
+            </p>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {['Interpret AHI data', 'Titration protocols', 'Treatment-emergent CA', 'NDIS quoting', 'BiPAP criteria'].map(q => (
+                <span key={q} className="rounded-full border border-blue-200 bg-white/80 px-3 py-1 text-xs text-slate-600">
+                  {q}
+                </span>
+              ))}
+            </div>
+
+            <div className={cn(
+              'mt-8 inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-8 py-4 font-bold text-white shadow-lg shadow-blue-600/30 transition-all duration-300',
+              hovering === 'clinician' ? 'scale-105 bg-blue-500' : ''
+            )}>
+              Open Clinical Mode
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      {/* Footer brand bar */}
+      <div className="flex items-center justify-between border-t border-slate-200 bg-white px-6 py-3">
+        <div className="flex items-center gap-2">
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-green-600 text-xs font-extrabold text-white">E</span>
+          <span className="font-bold text-slate-900">Easy CPAP</span>
+          <span className="hidden text-xs text-slate-400 sm:block">— Australia&apos;s Most Trusted CPAP Store</span>
+        </div>
+        <div className="flex items-center gap-4 text-xs text-slate-400">
+          <a href="https://easycpap.com.au" target="_blank" rel="noreferrer" className="hover:text-green-600">easycpap.com.au</a>
+          <span>1300 064 779</span>
+          <span className="hidden sm:block">NDIS Registered</span>
+        </div>
+      </div>
     </div>
   )
 }
