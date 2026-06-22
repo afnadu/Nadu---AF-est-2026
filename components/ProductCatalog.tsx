@@ -2,8 +2,11 @@
 
 import { useState } from 'react'
 import { naduProducts } from '@/data/nadu-products'
+import { easyCpapProducts } from '@/data/easycpap-products'
 import type { Product } from '@/types'
 import { cn } from '@/lib/utils'
+
+const allProducts: Product[] = [...naduProducts, ...easyCpapProducts]
 
 const categoryLabels: Partial<Record<Product['category'], string>> = {
   cpap: 'CPAP',
@@ -204,7 +207,7 @@ export default function ProductCatalog() {
     )
   }
 
-  const filtered = naduProducts.filter(p => filterFn(p) && searchFn(p))
+  const filtered = allProducts.filter(p => filterFn(p) && searchFn(p))
   const grouped = groupOrder.reduce<Record<string, Product[]>>((acc, cat) => {
     const items = filtered.filter(p => p.category === cat)
     if (items.length) acc[cat] = items
@@ -213,18 +216,18 @@ export default function ProductCatalog() {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="border-b border-slate-200 bg-white px-6 py-4">
-        <h1 className="text-lg font-bold text-slate-900">Nadu Product Catalog</h1>
-        <p className="text-sm text-slate-500">Full specifications, indications, and troubleshooting tips</p>
+      <div className="border-b border-[#E8E2D9] bg-[#FAF8F5] px-6 py-4">
+        <h1 className="font-serif text-lg font-semibold text-[#1A1A1A]">Clinic A Product Catalogue</h1>
+        <p className="text-sm text-[#6B6560]">Full specifications, indications, and troubleshooting tips</p>
         <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
           <input
             type="text"
             placeholder="Search products..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-teal-400 focus:ring-2 focus:ring-teal-100"
+            className="flex-1 rounded-xl border border-[#E8E2D9] bg-white px-3 py-2 text-sm outline-none focus:border-[#1B4332] focus:ring-2 focus:ring-[#1B4332]/10"
           />
-          <div className="flex rounded-lg border border-slate-200 bg-slate-50 p-1 gap-1">
+          <div className="flex rounded-full border border-[#E8E2D9] bg-white p-1 gap-1">
             {(['all', 'machine', 'mask', 'accessory'] as const).map(f => (
               <button
                 key={f}
