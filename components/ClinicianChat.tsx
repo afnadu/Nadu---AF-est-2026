@@ -81,7 +81,7 @@ export default function ClinicianChat() {
     } catch {
       setMessages(m => {
         const copy = [...m]
-        copy[copy.length - 1] = { ...copy[copy.length - 1], content: 'Connection error. Please try again or contact Easy CPAP clinical support.' }
+        copy[copy.length - 1] = { ...copy[copy.length - 1], content: 'Connection error. Please try again or contact Clinic A clinical support.' }
         return copy
       })
     } finally {
@@ -97,7 +97,7 @@ export default function ClinicianChat() {
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-lg font-bold text-white shadow">E</div>
           <div>
-            <p className="font-bold text-white text-sm leading-none">Easy CPAP</p>
+            <p className="font-bold text-white text-sm leading-none">Clinic A</p>
             <p className="text-xs text-blue-300 mt-0.5">Clinical Decision Support</p>
           </div>
         </div>
@@ -167,7 +167,7 @@ export default function ClinicianChat() {
                 <div className="mb-6 rounded-xl border border-blue-200 bg-blue-50 p-4">
                   <p className="text-sm font-bold text-blue-900">Clinical Mode Active</p>
                   <p className="mt-1 text-xs text-blue-700">
-                    Full clinical terminology, data-driven guidance, titration protocols, Medicare requirements, and prescribing-level detail. All Easy CPAP product specifications included.
+                    Full clinical terminology, data-driven guidance, titration protocols, Medicare requirements, and prescribing-level detail. All Clinic A product specifications included.
                   </p>
                 </div>
                 <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -245,7 +245,7 @@ export default function ClinicianChat() {
                 </button>
               </div>
               <p className="mt-1.5 text-xs text-slate-400">
-                Clinical support tool — verify all clinical decisions against current guidelines and patient-specific factors. Easy CPAP clinical team: 1300 064 779
+                Clinical support tool — verify all clinical decisions against current guidelines and patient-specific factors. Clinic A clinical team: 1300 064 779
               </p>
             </div>
           </div>

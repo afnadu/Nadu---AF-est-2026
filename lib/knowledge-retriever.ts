@@ -83,7 +83,7 @@ export function retrieveProductContext(query: string, tenant: string, topK = 3):
 
   if (scored.length === 0) return ''
 
-  const storeName = tenant === 'easycpap' ? 'Easy CPAP' : 'Nadu'
+  const storeName = tenant === 'easycpap' ? 'Clinic A' : 'Nadu'
   const lines = scored.map(({ p }) => {
     const parts = [
       `**${p.name}** (${p.category}) — ${p.description}`,

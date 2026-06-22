@@ -149,7 +149,7 @@ export default function Home() {
       <div className="flex items-center justify-between border-t border-slate-200 bg-white px-6 py-3">
         <div className="flex items-center gap-2">
           <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-green-600 text-xs font-extrabold text-white">E</span>
-          <span className="font-bold text-slate-900">Easy CPAP</span>
+          <span className="font-bold text-slate-900">Clinic A</span>
           <span className="hidden text-xs text-slate-400 sm:block">— Australia&apos;s Most Trusted CPAP Store</span>
         </div>
         <div className="flex items-center gap-4 text-xs text-slate-400">

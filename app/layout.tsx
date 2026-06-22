@@ -3,7 +3,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 
 export const metadata: Metadata = {
-  title: 'Easy CPAP — CPAP Triage Platform',
+  title: 'Clinic A — CPAP Triage Platform',
   description: 'Expert CPAP support for patients and clinicians — powered by AI. Australia\'s most trusted CPAP store.',
 }
 

@@ -24,7 +24,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-600 text-sm font-extrabold text-white">E</span>
           <div className="leading-none">
-            <p className="font-bold text-slate-900 text-sm">Easy CPAP</p>
+            <p className="font-bold text-slate-900 text-sm">Clinic A</p>
             <p className="text-xs text-slate-400">CPAP Triage Platform</p>
           </div>
         </Link>

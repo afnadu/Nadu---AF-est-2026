@@ -2,16 +2,16 @@ import type { Product, TenantConfig } from '@/types'
 
 export const easyCpapTenantConfig: TenantConfig = {
   id: 'easycpap',
-  name: 'Easy CPAP',
+  name: 'Clinic A',
   tagline: "Australia's Most Trusted CPAP Store",
   primaryColor: '#16a34a',
   accentColor: '#0f4c2a',
-  logoText: 'Easy CPAP',
+  logoText: 'Clinic A',
   clinicianEmail: 'info@easycpap.com.au',
   phone: '1300 064 779',
   website: 'https://easycpap.com.au',
   customContext: `
-Easy CPAP is Australia's most trusted online CPAP store. We are an Authorised Australian Dealer for ResMed, Fisher & Paykel, BMC, and Philips — all devices are TGA-approved and meet Australian Therapeutic Goods Administration standards.
+Clinic A is Australia's most trusted online CPAP store. We are an Authorised Australian Dealer for ResMed, Fisher & Paykel, BMC, and Philips — all devices are TGA-approved and meet Australian Therapeutic Goods Administration standards.
 
 KEY POLICIES:
 - Free express shipping nationwide on all orders
@@ -59,7 +59,7 @@ export const easyCpapProducts: Product[] = [
       'Personal Therapy Assistant: on-device setup guidance',
       'myAir app: daily therapy score, leak/AHI data, direct clinic messaging',
       'Ultra-quiet: <27 dBA',
-      '5-year warranty through Easy CPAP',
+      '5-year warranty through Clinic A',
     ],
     indications: ['Obstructive Sleep Apnea (OSA)', 'UARS', 'Prescribed CPAP therapy'],
     contraindications: ['Primary central sleep apnea', 'CHF with central apneas — discuss ASV with specialist'],
@@ -73,7 +73,7 @@ export const easyCpapProducts: Product[] = [
     compatibility: ['ClimateLineAir 11 heated tube', 'HumidAir 11 water chamber', 'Full AirFit/AirTouch mask range'],
     troubleshootingTips: [
       '"No Mask" alert: check mask is plugged in, cushion seated, and airflow path clear',
-      'AHI >5 with low leak: raise APAP max pressure — contact Easy CPAP clinical support',
+      'AHI >5 with low leak: raise APAP max pressure — contact Clinic A clinical support',
       'Rainout: enable AutoClimate or add ClimateLineAir heated tube',
       'Aerophagia: enable EPR 3; if persists, call 1300 064 779 for pressure review',
     ],
@@ -122,7 +122,7 @@ export const easyCpapProducts: Product[] = [
     indications: ['OSA with stable titrated pressure prescription', 'Patients where APAP auto-titration is not indicated'],
     troubleshootingTips: [
       'Pressure changes require a new prescription — do not adjust without clinical guidance',
-      'Contact Easy CPAP if you feel your pressure is wrong: 1300 064 779',
+      'Contact Clinic A if you feel your pressure is wrong: 1300 064 779',
     ],
   },
   {
@@ -286,7 +286,7 @@ export const easyCpapProducts: Product[] = [
     ],
     indications: ['Travel use', 'Backup device'],
     troubleshootingTips: [
-      'Check availability — Philips supply chain has been impacted since 2021 recall; Easy CPAP will advise on current stock',
+      'Check availability — Philips supply chain has been impacted since 2021 recall; Clinic A will advise on current stock',
       'If DreamStation Go unavailable, ResMed AirMini is the recommended alternative',
     ],
   },
@@ -298,7 +298,7 @@ export const easyCpapProducts: Product[] = [
     category: 'mask-fullface',
     sku: 'RS-F20',
     description:
-      'The best-selling full face mask in Australia. InfinitySeal cushion adapts to face contours for reliable seal. Available in XS, S, M, L. 30-day fit guarantee from Easy CPAP.',
+      'The best-selling full face mask in Australia. InfinitySeal cushion adapts to face contours for reliable seal. Available in XS, S, M, L. 30-day fit guarantee from Clinic A.',
     features: [
       'InfinitySeal cushion — flexible rim for forgiving fit',
       'Quick-release elbow for easy removal',

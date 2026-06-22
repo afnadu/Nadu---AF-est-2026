@@ -81,7 +81,7 @@ export default function PatientChat() {
     } catch {
       setMessages(m => {
         const copy = [...m]
-        copy[copy.length - 1] = { ...copy[copy.length - 1], content: 'Sorry, something went wrong. Please try again or call Easy CPAP on 1300 064 779.' }
+        copy[copy.length - 1] = { ...copy[copy.length - 1], content: 'Sorry, something went wrong. Please try again or call Clinic A on 1300 064 779.' }
         return copy
       })
     } finally {
@@ -97,7 +97,7 @@ export default function PatientChat() {
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-green-600 text-lg font-bold text-white shadow">E</div>
           <div>
-            <p className="font-bold text-slate-900 text-sm leading-none">Easy CPAP Support</p>
+            <p className="font-bold text-slate-900 text-sm leading-none">Clinic A Support</p>
             <p className="text-xs text-green-600 mt-0.5">Patient Assistant</p>
           </div>
         </div>

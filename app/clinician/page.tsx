@@ -1,7 +1,7 @@
 import ClinicianChat from '@/components/ClinicianChat'
 
 export const metadata = {
-  title: 'Clinical Decision Support — Easy CPAP',
+  title: 'Clinical Decision Support — Clinic A',
   description: 'Clinical-grade CPAP guidance for sleep therapy clinicians',
 }
 
