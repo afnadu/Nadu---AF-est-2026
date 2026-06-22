@@ -7,9 +7,9 @@ export const easyCpapTenantConfig: TenantConfig = {
   primaryColor: '#16a34a',
   accentColor: '#0f4c2a',
   logoText: 'Clinic A',
-  clinicianEmail: 'info@easycpap.com.au',
-  phone: '1300 064 779',
-  website: 'https://easycpap.com.au',
+  clinicianEmail: 'info@clinicA.com',
+  phone: '1300 xxx xxx',
+  website: 'https://clinica.com.au',
   customContext: `
 Clinic A is Australia's most trusted online CPAP store. We are an Authorised Australian Dealer for ResMed, Fisher & Paykel, BMC, and Philips — all devices are TGA-approved and meet Australian Therapeutic Goods Administration standards.
 
@@ -18,7 +18,7 @@ KEY POLICIES:
 - 30-day mask fit guarantee — if the mask doesn't fit, we exchange it
 - NDIS registered provider (self-managed and plan-managed participants)
 - Private health fund rebates available on eligible items
-- Local Australian customer support: 1300 064 779 | info@easycpap.com.au
+- Local Australian customer support: 1300 xxx xxx | info@clinicA.com
 
 BRANDS STOCKED: ResMed, Fisher & Paykel (F&P), BMC, Philips Respironics, Medistrom
 
@@ -29,7 +29,7 @@ Parts: Cushions, headgear, filters, tubing (heated & standard), water chambers
 Power: Medistrom battery packs (Pilot-24 Lite, Pilot-12 Lite, Pilot Flex), DC cords, solar chargers
 Cleaning: CPAP cleaning supplies and accessories
 
-PRICING CONTEXT (approximate AUD, always check easycpap.com.au for current prices):
+PRICING CONTEXT (approximate AUD, always check with Clinic A for current prices):
 - APAP machines: $799–$1,299 (machine only) or $1,249–$1,599 (machine + mask package)
 - Full face masks: $189–$299
 - Nasal masks: $149–$249
@@ -75,7 +75,7 @@ export const easyCpapProducts: Product[] = [
       '"No Mask" alert: check mask is plugged in, cushion seated, and airflow path clear',
       'AHI >5 with low leak: raise APAP max pressure — contact Clinic A clinical support',
       'Rainout: enable AutoClimate or add ClimateLineAir heated tube',
-      'Aerophagia: enable EPR 3; if persists, call 1300 064 779 for pressure review',
+      'Aerophagia: enable EPR 3; if persists, call 1300 xxx xxx for pressure review',
     ],
   },
   {
@@ -122,7 +122,7 @@ export const easyCpapProducts: Product[] = [
     indications: ['OSA with stable titrated pressure prescription', 'Patients where APAP auto-titration is not indicated'],
     troubleshootingTips: [
       'Pressure changes require a new prescription — do not adjust without clinical guidance',
-      'Contact Clinic A if you feel your pressure is wrong: 1300 064 779',
+      'Contact Clinic A if you feel your pressure is wrong: 1300 xxx xxx',
     ],
   },
   {
@@ -245,7 +245,7 @@ export const easyCpapProducts: Product[] = [
     compatibility: ['BMC N5A nasal mask', 'Standard 22mm CPAP hose (heated integrated)', 'Medistrom Pilot-24 Lite battery'],
     troubleshootingTips: [
       'Wi-Fi module: connect to home network via BMC iBreeze app for remote monitoring',
-      'SpO₂ kit upgrade available at easycpap.com.au if not included',
+      'SpO₂ kit upgrade available at Clinic A if not included',
       'Filter: replace BMC G3 standard filter every 3–6 months',
     ],
   },
@@ -489,7 +489,7 @@ export const easyCpapProducts: Product[] = [
     category: 'mask-nasal',
     sku: 'PH-DW-NASAL',
     description:
-      'Philips DreamWear — under-nose design with top-of-head tube connection. Excellent minimal-contact nasal mask. Note: Philips supply availability may vary — check at easycpap.com.au.',
+      'Philips DreamWear — under-nose design with top-of-head tube connection. Excellent minimal-contact nasal mask. Note: Philips supply availability may vary — check at Clinic A.',
     features: [
       'Magnetic under-nose seal',
       'Top-of-head connection for unrestricted sleeping position',
@@ -589,7 +589,7 @@ export const easyCpapProducts: Product[] = [
     category: 'mask-pillow',
     sku: 'PH-DW-GEL',
     description:
-      'Philips DreamWear with gel nasal pillows — top-of-head tube connection, gel cushioning for added softness. Check stock availability at easycpap.com.au.',
+      'Philips DreamWear with gel nasal pillows — top-of-head tube connection, gel cushioning for added softness. Check stock availability at Clinic A.',
     features: ['Gel pillow inserts for soft seal', 'Top-of-head tube', 'Fitpack includes S, M, L pillows'],
     indications: ['Minimal contact preference', 'Active sleepers'],
     troubleshootingTips: ['Check availability — Philips supply may be limited'],
@@ -666,7 +666,7 @@ export const easyCpapProducts: Product[] = [
       'FAA-compliant',
     ],
     indications: ['Universal travel battery', 'Mixed-brand households'],
-    troubleshootingTips: ['Check device compatibility list on easycpap.com.au before purchasing'],
+    troubleshootingTips: ['Check device compatibility list on Clinic A before purchasing'],
   },
 
   // ─── ACCESSORIES: Tubing ───

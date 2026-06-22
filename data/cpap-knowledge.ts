@@ -279,4 +279,56 @@ export const cpapKnowledge: KnowledgeChunk[] = [
     tags: ['travel', 'flying', 'altitude', 'international', 'power', 'battery'],
     content: `Travel tips: 1) CPAP is FAA-approved and TSA-exempt (screened separately). Carry-on only — never check equipment. 2) Carry physician letter and prescription. 3) Most modern machines auto-adjust for voltage (100–240V) — check label; carry international adapter plug set. 4) Altitude: most machines auto-adjust; confirm your model. Manual altitude setting on some older devices. 5) Water: use distilled water in humidifier; bottled water if unavailable (tap water can leave mineral deposits). 6) Without access to water/power: HME (heat-moisture exchanger) like AirMini HumidX can substitute for humidifier. 7) CPAP battery: goal zero, ResMed AirMini battery pack, PowerTraveller — confirm watt-hour for airline approval.`,
   },
+
+  // ─── MARKET & CLINICAL PATHWAYS (from CPAP Direct + Sove CPAP Clinic research) ───
+  {
+    id: 'protocol-4week-trial',
+    topic: '4-Week CPAP Trial Program',
+    category: 'protocol',
+    tags: ['trial', '4 week', 'rental', 'new patient', 'pressure trial', 'onboarding'],
+    content: `A 4-week CPAP trial is an industry best-practice pathway for new patients who are uncertain about committing to purchasing equipment. The patient receives a complete CPAP setup — machine (typically AirSense 11 AutoSet or DreamStation 2 Auto), fitted mask, humidifier, and accessories — for a supervised trial period. Clinician reviews data at week 1 and week 4. Cost of trial is typically credited against purchase if patient proceeds. Key benefits: reduces dropout by allowing commitment after experiencing real benefit; allows mask and pressure optimisation before final purchase; builds patient confidence. Sove CPAP Clinic (Australia's largest CPAP provider, 90+ clinics nationally) built their patient acquisition model on this approach. Best practice: offer AHI data review at end of trial to demonstrate clinical benefit.`,
+  },
+  {
+    id: 'protocol-mask-fitting',
+    topic: 'CPAP Mask Fitting Protocol',
+    category: 'protocol',
+    tags: ['mask fitting', 'mask selection', 'fitting', 'trial', 'comfort'],
+    content: `Structured mask fitting improves long-term adherence. Assessment before fitting: (1) Breathing habit — nasal or mouth breather? Mouth breathers need full face mask or chin strap + nasal/pillow mask. (2) Sleep position — side sleepers prefer minimal-contact masks (nasal pillows, N30i); back sleepers tolerate standard nasal or full face. (3) Facial features — bridge width (N20 vs N30i), presence of facial hair (pillows superior), skin sensitivity, claustrophobia history. (4) Pressure range — pillow masks less suited for pressures >15 cmH2O. Fitting process: minimum 3 mask styles tried. Patient lies down in reclined position — seal quality differs standing vs lying. Test with live CPAP airflow, not just static check. Document frame size and cushion size separately. 30-day mask exchange policy is industry standard — if seal or comfort fails in first month, replace without charge.`,
+  },
+  {
+    id: 'protocol-no-referral-pathway',
+    topic: 'No-Referral CPAP Access Pathway',
+    category: 'protocol',
+    tags: ['no referral', 'direct access', 'home sleep study', 'pathway', 'new patient'],
+    content: `Patients do not require a GP referral to access CPAP assessment in Australia. Direct-access pathway: (1) Patient contacts CPAP provider directly. (2) Home sleep study arranged — device mailed or collected at clinic. (3) Results interpreted by sleep physician — bulk billed to Medicare in most cases. (4) If OSA confirmed: CPAP trial arranged, machine set up, pressure titrated via APAP auto-titration. (5) If no OSA: patient informed, referred to GP if other sleep disorder suspected. This model, popularised by Sove CPAP Clinic and others, reduces the diagnostic gap for patients who face barriers accessing GP or sleep physician referrals. Key: home sleep studies (Level 3 devices) are sufficient for uncomplicated suspected OSA — in-lab PSG reserved for complex cases.`,
+    clinicianOnly: true,
+  },
+  {
+    id: 'machine-comparison-top',
+    topic: 'Top CPAP Machines Australia — Comparison',
+    category: 'machine',
+    tags: ['comparison', 'best machine', 'airsense 11', 'dreamstation 2', 'sleepstyle', 'lowenstein', 'bmc', 'machine'],
+    content: `2025 Australian CPAP machine comparison: (1) ResMed AirSense 11 AutoSet — best overall; 4G built-in, myAir app, AutoRamp, AutoClimate, strong AirView remote monitoring. ~$1,800–2,200 retail. Best for: most OSA patients, clinics with remote monitoring programs. (2) Philips DreamStation 2 Auto — returned post-2021 recall; quieter than original DreamStation, Bluetooth/Wi-Fi, DreamMapper app, flex pressure relief. ~$1,200–1,600. Good alternative to AirSense. (3) Fisher & Paykel SleepStyle Auto — SensAwake technology reduces pressure on wake, 3D humidifier chamber, good for patients with fragmented sleep. ~$1,200–1,500. (4) Löwenstein Prisma 20A — German engineering, claimed quietest APAP on Australian market, PrismaCloud 3G modem, strong clinician data platform. ~$1,500–2,000. Growing market share. (5) BMC Luna G3 Auto — best value; iCode algorithm, A-Flex comfort, SleepSync app, no 4G (Bluetooth only). ~$700–900. Good for cost-conscious patients or public hospital programs. Feature priority: data connectivity > comfort features > noise level > price.`,
+  },
+  {
+    id: 'machine-lowenstein-prisma',
+    topic: 'Löwenstein Prisma — German APAP',
+    category: 'machine',
+    tags: ['lowenstein', 'prisma', 'german', 'apap', 'quiet', 'machine'],
+    content: `Löwenstein Medical (formerly Weinmann) is a German medical-technology brand with 80+ years in respiratory care. The Prisma 20A APAP is their flagship Australian device. Key features: PrismaAQUA heated humidifier, 3G modem built-in for direct cloud upload via PrismaCloud, advanced SOMNOcheck-based algorithm, large colour touchscreen, claimed lowest noise level of any APAP in Australia. Pressure range 4–20 cmH2O. Comfort: softPAP (expiratory pressure relief similar to EPR). Strong clinical data platform — popular with respiratory specialists and sleep physicians for complex patients. Compatible with standard 22mm CPAP tubing and most mask brands. Heated tube available (PrismaHOSE). Smaller market share than ResMed in Australia but growing, particularly in specialist/hospital settings. Not stocked by all retailers — specialist CPAP clinic supply most units.`,
+  },
+  {
+    id: 'machine-dreamstation2',
+    topic: 'Philips DreamStation 2 Auto CPAP',
+    category: 'machine',
+    tags: ['philips', 'dreamstation', 'dreamstation 2', 'apap', 'machine'],
+    content: `The Philips DreamStation 2 Auto CPAP is the successor to the original DreamStation, relaunched after Philips addressed the 2021 foam degradation recall. Key features: automatic pressure adjustment (APAP), Bluetooth and optional Wi-Fi connectivity, DreamMapper app for patient-facing data, OptiStart algorithm, A-Flex (expiratory pressure relief), integrated humidifier with EZ-Snap water chamber, quieter than first-generation DreamStation (<26 dBA), travel-ready design. Compared to AirSense 11: no built-in 4G (requires Wi-Fi or manual data transfer), DreamMapper less feature-rich than myAir, but competitive on price. Good option for patients who previously used DreamStation and prefer familiarity. Compatible with DreamWear mask range. Note: supply has stabilised post-recall, but check current stock availability with supplier.`,
+  },
+  {
+    id: 'edu-buying-guide',
+    topic: 'How to Choose a CPAP Machine — Patient Guide',
+    category: 'education',
+    tags: ['buying guide', 'choose machine', 'first cpap', 'recommendation', 'patient'],
+    content: `Choosing your first CPAP machine: Start with APAP (auto-adjusting) — it handles pressure variation automatically and outperforms fixed CPAP for most new patients. Key questions: (1) Does your clinic offer remote monitoring? → prioritise 4G built-in (AirSense 11) over Bluetooth-only (BMC). (2) Travel frequently? → Consider AirMini as travel companion or DreamStation Go. (3) Budget-conscious? → BMC Luna G3 Auto offers reliable therapy at half the price of ResMed. (4) Prefer quietest machine? → Löwenstein Prisma 20A. (5) Previously used DreamStation? → DreamStation 2 offers familiarity. (6) Struggling with dry mouth despite humidification? → Fisher & Paykel SleepStyle Auto with 3D humidifier and heated tube. Most importantly: the best machine is one you'll use every night. Trial programs (4 weeks) are available from most Australian CPAP clinics — try before you buy.`,
+  },
 ]

@@ -151,7 +151,7 @@ export default function Home() {
           <span className="hidden text-xs text-[#6B6560] sm:block">— CPAP Triage Platform</span>
         </div>
         <div className="flex items-center gap-4 text-xs text-[#6B6560]">
-          <span>1300 064 779</span>
+          <span>1300 xxx xxx</span>
           <span className="hidden sm:block">NDIS Registered</span>
         </div>
       </div>

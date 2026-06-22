@@ -245,7 +245,7 @@ export default function ClinicianChat() {
                 </button>
               </div>
               <p className="mt-1.5 text-xs text-[#6B6560]">
-                Verify all clinical decisions against current guidelines and patient-specific factors. Clinic A: 1300 064 779
+                Verify all clinical decisions against current guidelines and patient-specific factors. Clinic A: 1300 xxx xxx
               </p>
             </div>
           </div>

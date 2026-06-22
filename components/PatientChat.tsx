@@ -79,7 +79,7 @@ export default function PatientChat() {
     } catch {
       setMessages(m => {
         const copy = [...m]
-        copy[copy.length - 1] = { ...copy[copy.length - 1], content: 'Sorry, something went wrong. Please try again or call Clinic A on 1300 064 779.' }
+        copy[copy.length - 1] = { ...copy[copy.length - 1], content: 'Sorry, something went wrong. Please try again or call Clinic A on 1300 xxx xxx.' }
         return copy
       })
     } finally {
@@ -100,8 +100,8 @@ export default function PatientChat() {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <a href="tel:1300064779" className="hidden items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 sm:flex">
-            📞 1300 064 779
+          <a href="tel:1300xxxxxx" className="hidden items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 sm:flex">
+            📞 1300 xxx xxx
           </a>
           <Link href="/" className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20">
             ← Back
