@@ -4,6 +4,9 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
+const PATIENT_QUESTIONS = ['My mask leaks', "Can't sleep with it", 'Dry mouth', 'Need new mask', 'How to clean it']
+const CLINICIAN_QUESTIONS = ['Interpret AHI data', 'Titration protocols', 'Treatment-emergent CA', 'NDIS quoting', 'BiPAP criteria']
+
 export default function Home() {
   const router = useRouter()
   const [hovering, setHovering] = useState<'patient' | 'clinician' | null>(null)
@@ -54,10 +57,14 @@ export default function Home() {
             </p>
 
             <div className="mt-6 flex flex-wrap justify-center gap-2">
-              {['My mask leaks', "Can't sleep with it", 'Dry mouth', 'Need new mask', 'How to clean it'].map(q => (
-                <span key={q} className="rounded-full border border-[#E8E2D9] bg-white/80 px-3 py-1 text-xs text-[#6B6560]">
+              {PATIENT_QUESTIONS.map(q => (
+                <button
+                  key={q}
+                  onClick={e => { e.stopPropagation(); router.push(`/patient?q=${encodeURIComponent(q)}`) }}
+                  className="rounded-full border border-[#E8E2D9] bg-white/80 px-3 py-1 text-xs text-[#6B6560] transition-colors hover:border-[#1B4332] hover:text-[#1B4332]"
+                >
                   {q}
-                </span>
+                </button>
               ))}
             </div>
 
@@ -123,10 +130,14 @@ export default function Home() {
             </p>
 
             <div className="mt-6 flex flex-wrap justify-center gap-2">
-              {['Interpret AHI data', 'Titration protocols', 'Treatment-emergent CA', 'NDIS quoting', 'BiPAP criteria'].map(q => (
-                <span key={q} className="rounded-full border border-[#E8E2D9] bg-white/80 px-3 py-1 text-xs text-[#6B6560]">
+              {CLINICIAN_QUESTIONS.map(q => (
+                <button
+                  key={q}
+                  onClick={e => { e.stopPropagation(); router.push(`/clinician?q=${encodeURIComponent(q)}`) }}
+                  className="rounded-full border border-[#E8E2D9] bg-white/80 px-3 py-1 text-xs text-[#6B6560] transition-colors hover:border-[#1B4332] hover:text-[#1B4332]"
+                >
                   {q}
-                </span>
+                </button>
               ))}
             </div>
 

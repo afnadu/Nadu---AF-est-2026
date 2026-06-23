@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import type { ChatMessage } from '@/types'
 import { cn } from '@/lib/utils'
 
@@ -46,6 +47,7 @@ function exportSession(messages: ChatMessage[]): void {
 }
 
 export default function ClinicianChat() {
+  const searchParams = useSearchParams()
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -54,6 +56,7 @@ export default function ClinicianChat() {
   const [copied, setCopied] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const autoSentRef = useRef(false)
 
   useEffect(() => {
     try {
@@ -61,6 +64,15 @@ export default function ClinicianChat() {
       if (saved) setMessages(JSON.parse(saved))
     } catch {}
   }, [])
+
+  useEffect(() => {
+    const q = searchParams.get('q')
+    if (q && !autoSentRef.current) {
+      autoSentRef.current = true
+      send(q)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams])
 
   useEffect(() => {
     if (messages.length > 0) {

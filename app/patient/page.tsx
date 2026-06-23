@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import PatientChat from '@/components/PatientChat'
 
 export const metadata = {
@@ -6,5 +7,9 @@ export const metadata = {
 }
 
 export default function PatientPage() {
-  return <PatientChat />
+  return (
+    <Suspense>
+      <PatientChat />
+    </Suspense>
+  )
 }
