@@ -16,6 +16,8 @@ const STARTERS = [
   { icon: '🚨', text: 'ASV indications and SERVE-HF contraindication — clinical summary' },
 ]
 
+const STORAGE_KEY = 'clinica-clinician-chat'
+
 function renderMarkdown(text: string): string {
   return text
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
@@ -33,17 +35,54 @@ function renderMarkdown(text: string): string {
     .replace(/\n/g, '<br/>')
 }
 
+function exportSession(messages: ChatMessage[]): void {
+  const lines = messages.map(m => {
+    const role = m.role === 'user' ? 'CLINICIAN' : 'CLINIC A AI'
+    const time = new Date(m.timestamp ?? Date.now()).toLocaleTimeString()
+    return `[${time}] ${role}:\n${m.content}\n`
+  })
+  const text = `Clinic A — Clinical Session Export\n${new Date().toLocaleString()}\n\n${'─'.repeat(40)}\n\n${lines.join('\n─'.repeat(40) + '\n\n')}`
+  navigator.clipboard.writeText(text).catch(() => {})
+}
+
 export default function ClinicianChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [showContext, setShowContext] = useState(false)
+  const [feedback, setFeedback] = useState<Record<number, 'up' | 'down'>>({})
+  const [copied, setCopied] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY)
+      if (saved) setMessages(JSON.parse(saved))
+    } catch {}
+  }, [])
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(messages)) } catch {}
+    }
+  }, [messages])
+
+  useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  const clearChat = () => {
+    setMessages([])
+    setFeedback({})
+    try { localStorage.removeItem(STORAGE_KEY) } catch {}
+  }
+
+  const handleCopy = () => {
+    exportSession(messages)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   const send = async (text: string) => {
     if (!text.trim() || loading) return
@@ -102,6 +141,22 @@ export default function ClinicianChat() {
           </div>
         </div>
         <div className="flex items-center gap-2">
+          {messages.length > 0 && (
+            <button
+              onClick={handleCopy}
+              className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-medium text-white/60 hover:border-white/40 hover:text-white transition-colors"
+            >
+              {copied ? '✓ Copied' : '⎘ Copy session'}
+            </button>
+          )}
+          {messages.length > 0 && (
+            <button
+              onClick={clearChat}
+              className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-medium text-white/60 hover:border-white/40 hover:text-white transition-colors"
+            >
+              New chat
+            </button>
+          )}
           <button
             onClick={() => setShowContext(c => !c)}
             className={cn(
@@ -111,7 +166,7 @@ export default function ClinicianChat() {
           >
             {showContext ? 'Hide' : 'Show'} protocols
           </button>
-          <Link href="/" className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-medium text-white/60 hover:border-white/40 hover:text-white">
+          <Link href="/" className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-medium text-white/60 hover:border-white/40 hover:text-white transition-colors">
             ← Back
           </Link>
         </div>
@@ -190,24 +245,41 @@ export default function ClinicianChat() {
                     {msg.role === 'assistant' && (
                       <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#1B4332] text-xs font-bold text-white shadow-sm">A</div>
                     )}
-                    <div className={cn(
-                      'max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-relaxed',
-                      msg.role === 'user'
-                        ? 'bg-[#1B4332] text-white rounded-br-sm font-mono text-xs'
-                        : 'bg-white border border-[#E8E2D9] text-[#1A1A1A] rounded-bl-sm shadow-sm'
-                    )}>
-                      {msg.role === 'assistant' ? (
-                        <>
-                          <div dangerouslySetInnerHTML={{ __html: `<p>${renderMarkdown(msg.content)}</p>` }} />
-                          {loading && i === messages.length - 1 && msg.content === '' && (
-                            <span className="inline-flex gap-1 pt-1">
-                              {[0, 1, 2].map(n => (
-                                <span key={n} className="h-2 w-2 rounded-full bg-[#1B4332]/40 animate-bounce" style={{ animationDelay: `${n * 0.1}s` }} />
-                              ))}
-                            </span>
-                          )}
-                        </>
-                      ) : msg.content}
+                    <div className={cn('flex flex-col gap-1', msg.role === 'user' ? 'items-end' : 'items-start', 'max-w-[88%]')}>
+                      <div className={cn(
+                        'rounded-2xl px-4 py-3 text-sm leading-relaxed',
+                        msg.role === 'user'
+                          ? 'bg-[#1B4332] text-white rounded-br-sm font-mono text-xs'
+                          : 'bg-white border border-[#E8E2D9] text-[#1A1A1A] rounded-bl-sm shadow-sm'
+                      )}>
+                        {msg.role === 'assistant' ? (
+                          <>
+                            <div dangerouslySetInnerHTML={{ __html: `<p>${renderMarkdown(msg.content)}</p>` }} />
+                            {loading && i === messages.length - 1 && msg.content === '' && (
+                              <span className="inline-flex gap-1 pt-1">
+                                {[0, 1, 2].map(n => (
+                                  <span key={n} className="h-2 w-2 rounded-full bg-[#1B4332]/40 animate-bounce" style={{ animationDelay: `${n * 0.1}s` }} />
+                                ))}
+                              </span>
+                            )}
+                          </>
+                        ) : msg.content}
+                      </div>
+
+                      {/* Feedback on completed assistant messages */}
+                      {msg.role === 'assistant' && msg.content && !(loading && i === messages.length - 1) && (
+                        <div className="flex items-center gap-1.5 px-1">
+                          <span className="text-xs text-[#6B6560]">Accurate?</span>
+                          <button
+                            onClick={() => setFeedback(f => ({ ...f, [i]: 'up' }))}
+                            className={cn('rounded-full px-1.5 py-0.5 text-xs transition-colors', feedback[i] === 'up' ? 'bg-[#ECFDF5] text-[#1B4332]' : 'text-[#6B6560] hover:text-[#1B4332]')}
+                          >👍</button>
+                          <button
+                            onClick={() => setFeedback(f => ({ ...f, [i]: 'down' }))}
+                            className={cn('rounded-full px-1.5 py-0.5 text-xs transition-colors', feedback[i] === 'down' ? 'bg-[#FEF2F2] text-red-500' : 'text-[#6B6560] hover:text-red-500')}
+                          >👎</button>
+                        </div>
+                      )}
                     </div>
                     {msg.role === 'user' && (
                       <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#1B4332]/20 text-xs text-[#1B4332] font-semibold shadow-sm">MD</div>

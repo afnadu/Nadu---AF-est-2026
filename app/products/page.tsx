@@ -1,7 +1,7 @@
 import ProductCatalog from '@/components/ProductCatalog'
 
 export const metadata = {
-  title: 'Product Catalog — Nadu CPAP Platform',
+  title: 'Product Catalogue — Clinic A',
 }
 
 export default function ProductsPage() {
